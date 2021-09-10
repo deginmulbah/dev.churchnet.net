@@ -1,0 +1,154 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+    <% include ../../partials/sidebar %>
+
+<!-- **********  main-panel  ********** -->
+<div class="main-panel">
+	<div class="panel-hedding">
+		<div class="row mb-4">
+			<div class="col-md-3">
+				<h1><%= pageTitle %></h1>
+				<p>Premium Bootstrap4 Admin Dashboard</p>
+			</div>
+			<div class="col-md-7">
+				<div class="alert bg-white shadow-sm alert-dismissible fade show mb-0 mt-md-0 mt-3" role="alert">
+					<i class="feather icon-alert-triangle text-primary mr-2"></i> Welcome back,  Dave mattew!  Your last sig in at Yesterday, 16:54 PM
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">×</span>
+					</button>
+				</div>
+			</div>
+		</div>
+        <% if(successFlashMessage) {%>
+            <div class="alert alert-success alert-dismissible fade show alert-icon" role="alert" >
+              <i class="fa fa-check-circle"></i><%= successFlashMessage %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        <%}%>
+        <% if(errorFlashMessage) {%>
+           <div class="alert alert-danger alert-dismissible fade show alert-icon" role="alert">
+             <i class="fa fa-warning"></i><%= errorFlashMessage %>
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+        <%}%>
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+                        <div class="e-profile m-4 m-auto pt-4">
+                            <div class="row">
+                                <div class="col-12 col-sm-auto mb-3">
+                                    <div class="mx-auto" style="width: 140px;">
+                                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                            <img id="output" width="100%" src="<%= userDetials.avater %>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= userDetials.fname %> <%= userDetials.mname %> <%= userDetials.lname %></h4>
+                                        <p class="mb-0"><%= userDetials.username %> </p>
+                                        <div class="mt-3">
+                                            <div class="input-group ">
+                                                <form action="/admin/profile/update_profile_pic" enctype="multipart/form-data" method="POST">
+                                                    <div class="custom-file">
+                                                      <input type="file" class="custom-file-input" id="file" name="avater" onchange="preview_img(event)">
+                                                      <label class="custom-file-label" for="avater">
+                                                        <i class="fa fa-fw fa-camera"></i>
+                                                          Choose file
+                                                        </label>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary mt-1 pt-xm-4">Save
+                                                     <i class="fa fa-fw fa-camera"></i>
+                                                    </button>
+                                                </form>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center text-sm-right">
+                                        <span class="badge badge-secondary"><%= userDetials.role %></span>
+                                        <div class="text-muted"><small>Joined <%= moment(userDetials.created_at).format('MMM Do YY') %></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <form class="form" action="/admin/profile/update_profile" method="POST">
+                                      <div class="row">
+                                         <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="fname">First Name <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" id="fname" name="fname" value="<%= userDetials.fname %>">
+                                            </div>
+                                         </div>
+                                         <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="mname">Middle name <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" name="mname" id="mname" value="<%= userDetials.mname %>">
+                                            </div>
+                                         </div>
+                                         <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="lname">Last Name<span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" id="lname" name="lname" value="<%= userDetials.lname %>">
+                                            </div>
+                                         </div>
+                                      </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="usename">Email <span class="text-danger">*</span></label>
+                                                <input class="form-control" id="username" type="text" name="username" value="<%= userDetials.username %>" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="address">Address</label>
+                                                    <input class="form-control" type="text" id="address" name="address" value="<%= userDetials.address %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phone">Phone number</label>
+                                                    <input class="form-control" id="phone" type="text" name="phone" value="<%= userDetials.phone %>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col mb-3">
+                                                <div class="form-group">
+                                                    <label for="bio">About</label>
+                                                    <textarea class="form-control" rows="5" name="bio"><%= userDetials.bio %></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<% include ../../partials/footer %>
+<script>
+    var preview_img = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>

@@ -1,0 +1,64 @@
+.box {
+  position: relative;
+  background: #ffffff;
+  width: 100%;
+}
+.box-header {
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.box-tools {
+  position: absolute;
+  right: 23em;
+  top: -6px;
+}
+.box-tools .fa{ 
+  background-color:#000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 50%;
+}
+.box-tools .fa:hover{ 
+  cursor: pointer;
+  background-color:rgba(0, 0, 0, 0.337);
+}
+.dropzone-wrapper {
+  border: 1px dashed #cccccc;
+  border-radius: 5px;
+  color: #cccccc;
+  position: relative;
+  height: 115px;
+}
+.dropzone-desc {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 100%;
+  top: 30px;
+  font-size: 16px;
+}
+.dropzone,
+.dropzone:focus {
+  position: absolute;
+  outline: none !important;
+  width: 100%;
+  height: 150px;
+  cursor: pointer;
+  opacity: 0;
+}
+.dropzone-wrapper:hover,
+.dropzone-wrapper.dragover {
+  background: #ecf0f5;
+}
+.profileImg{ 
+  height: 74px;
+  width: 74px;
+  border-radius: 50%;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}

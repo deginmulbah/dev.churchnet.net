@@ -1,0 +1,223 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+  <% include ../../partials/sidebar %>
+
+  <!-- **********  main-panel  ********** -->
+  <div class="main-panel">
+    <div class="panel-hedding">
+			<nav class="row">
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">
+							<a href="javascript:history.go(-1)">
+								<i class="la la-long-arrow-left"></i>
+							</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page"><%= pageTitle %> </li>
+					</ol>
+				</div>
+			</nav>
+    </div>
+    <div class="row user-profile mb-4">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <div class="user-detail border-radius shadow-sm">
+          <div class="avatar avatar-xll d-block mx-auto">
+            <img class="img-fluid" src="<%= userDetials.avater %>" alt="" />
+          </div>
+          <div class="user-name mt-3 text-center">
+            <h5><%= userDetials.fname %> <%= userDetials.mname %> <%= userDetials.lname %></h5>
+            <span>
+              <strong class="text-primary"><%= userDetials.username %></strong></span >
+            <div class="row align-items-center">
+              <div class="col">
+                <ul class="user-rating list-inline mt-3 text-right">
+                  <li><i class="fa fa-star text-warning"></i></li>
+                  <li><i class="fa fa-star text-warning"></i></li>
+                  <li><i class="fa fa-star text-warning"></i></li>
+                  <li><i class="fa fa-star-half-empty text-warning"></i></li>
+                  <li><i class="fa fa-star-o"></i></li>
+                </ul>
+              </div>
+              <div class="col">
+                <div class="user-like text-left">
+                  <a href="#"> <i class="fa fa-heart-o"></i> 2.5k</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <a href="/admin/user/edit_user_account/<%= userDetials._id %>" class="btn btn-primary btn-icon btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Profile"> <i class="fa fa-edit"></i> </a>
+            <button type="button" class="btn btn-secondary btn-icon btn-sm" data-toggle="modal" data-target="#resetpwdmodel"
+             data-placement="top" title="Change Password"> <i class="fa fa-key"></i> </button>
+         </div>
+          <div class="user-info mt-4">
+            <h5>User information</h5>
+            <div class="my-3">
+              <h6>Email:</h6>
+              <span><%= userDetials.username %></span>
+            </div>
+            <div class="my-3">
+              <h6>Phone:</h6>
+              <span><%= userDetials.phone %></span>
+            </div>
+            <div class="my-3">
+              <h6>Address:</h6>
+              <span><%= userDetials.address %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="user-about border-radius shadow-sm">
+					<div class="mb-4">
+						<h5 class="mb-3">About</h5>
+						<p>Aliquam minima rem voluptate veniam quae fugit ut optio eos maiores. Incidunt veritatis ducimus debitis, hic dicta a quod fuga commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga,</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione voluptas qui quis quas dolorum illo, perferendis. Temporibus repellat eum nesciunt fuga nulla, saepe, veniam qui a eveniet vel, tempore obcaecati.</p>
+					</div>
+					<div class="mb-4">
+						<h5 class="mb-3">Skills</h5>
+						<ul class="tag list-inline">
+							<li><a href="#!"> HTML5 </a></li>
+							<li><a href="#!"> CSS3 </a></li>
+							<li><a href="#!"> Android </a></li>
+							<li><a href="#!"> Ios </a></li>
+							<li><a href="#!"> App </a></li>
+							<li><a href="#!"> PHP </a></li>
+							<li><a href="#!"> mysql </a></li>
+							<li><a href="#!"> WordPress </a></li>
+							<li><a href="#!"> SEO </a></li>
+							<li><a href="#!"> Testing </a></li>
+							<li><a href="#!"> JavaScript </a></li>
+							<li><a href="#!"> User Interface </a></li>
+							<li><a href="#!"> .Net </a></li>
+						</ul>
+					</div>
+					<div class="mb-4">
+						<h5 class="mb-3">Work most with</h5>
+						<div class="avatar mr-1 mb-2 mb-sm-0">
+							<img class="img-fluid" src="images/team/01.jpg" alt="">
+						</div>
+						<div class="avatar mr-1 mb-2 mb-sm-0">
+							<img class="img-fluid" src="images/team/02.jpg" alt="">
+						</div>
+						<div class="avatar mr-1 mb-2 mb-sm-0">
+							<img class="img-fluid" src="images/team/03.jpg" alt="">
+						</div>
+						<div class="avatar mr-1 mb-2 mb-sm-0">
+							<img class="img-fluid" src="images/team/04.jpg" alt="">
+						</div>
+						<div class="avatar mr-1 mb-2 mb-sm-0">
+							<img class="img-fluid" src="images/team/05.jpg" alt="">
+						</div>
+						<div class="avatar mr-1 mb-2 mb-sm-0">
+							<img class="img-fluid" src="images/team/06.jpg" alt="">
+						</div>
+					</div>
+					<div class="mb-4">
+						<h5 class="mb-3">Languages</h5>
+						<ul class="user-languages list-inline">
+							<li> <a href="#!"> <i class="flag-icon flag-icon-gb"></i> English </a> </li>
+							<li> <a href="#!"> <i class="flag-icon flag-icon-de"></i> Germany </a> </li>
+							<li> <a href="#!"> <i class="flag-icon flag-icon-fr"></i> France </a> </li>
+							<li> <a href="#!"> <i class="flag-icon flag-icon-pt"></i> Portuguese  </a> </li>
+						</ul>
+					</div>
+				</div>
+  </div>
+</div>
+</div>
+
+<!-- Modal Change password-->
+	<div class="modal fade" id="resetpwdmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Change Password <i class="fa fa-key"></i></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div id="modal_body" class="modal-body p-5">
+          <div id="loader" class="spinner spinner-06 d-none"></div>
+	      <form id="resetpwd">
+			  <div class="form-group" id="new_pwd">
+			    <label for="password">New Password</label>
+			    <input type="password" class="form-control" name="newpwd" id="newpwd" placeholder="New Password" required>
+          <span></span>
+        </div>
+        <div class="form-group" id="confirmPwd">
+			    <label for="password">Re-type Password</label>
+			    <input type="password" class="form-control" name="confirmPwd" id="confirm" placeholder="Re-type Password" required>
+          <span id="error"></span>
+			  </div>
+        <input type="hidden" name="id" value="<%= userDetials._id %>"/>
+			  <button type="submit" class="btn btn-primary float-right" id="resetbtn"> <span id="spinner" class="spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span>
+          Reset Password
+        </button>
+			</form>
+	      </div>
+	    </div>
+	  </div>
+	</div> 
+<% include ../../partials/footer %>
+<script>
+   $(document).ready(function () {
+     const resetpwd = $("#resetpwd");
+     const resetbtn = $("#resetbtn");
+     const spinner  = $("#spinner");
+     const modal_body = $(".modal-body");
+     const loader = $("#loader");
+     const error  = $("#error");
+     const newpwd = $("#newpwd");
+     const confirmPwd = $("#confirm");
+     const confpassErr = $("#confpassErr");
+     const newpassErr = $("#newpassErr");
+
+     resetpwd.on("submit", function (e) {
+       e.preventDefault();
+       $.ajax({
+         method: "POST",
+         url: "/admin/user/reset_user_password",
+         data: $(this).serialize(),
+         dataType: "json",
+         beforeSend: function() {
+           //set loader
+            modal_body.addClass("spinner-overlay");
+            loader.removeClass('d-none')
+            resetbtn.prop("disabled", true);
+            spinner.removeClass("d-none");
+         }, 
+         success: function (res) { 
+           // validate form
+            if(res.msg === "newpwd") { 
+              newpwd.addClass("is-invalid");
+              $("#new_pwd").find('span').addClass("error").text(res.msgtxt);
+            } else if (res.msg === "confirmPwd") { 
+              confirmPwd.addClass("is-invalid");
+              $('#confirmPwd').find("span").addClass("error").text(res.msgtxt)
+            } 
+            if(res.msg === "success"){ 
+              toastr[res.msg](res.msgtxt)
+              $("#resetpwdmodel").modal("hide");
+              $("#resetpwd")[0].reset();
+            }
+         },
+         complete: function (){ 
+            modal_body.removeClass("spinner-overlay");
+            loader.addClass('d-none')
+            resetbtn.prop("disabled", false);
+            spinner.addClass("d-none");
+         }
+       });
+     });
+     //clear error msg
+     $("#confirm").keyup(function (e) { 
+      $(this).removeClass("is-invalid");
+      $('#confirmPwd').find("span").removeClass("error").text('')
+     });
+     $("#newpwd").keyup(function (e) { 
+      $(this).removeClass("is-invalid");
+      $('#new_pwd').find("span").removeClass("error").text('')
+     });
+   });
+</script>

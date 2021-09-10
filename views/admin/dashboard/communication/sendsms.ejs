@@ -1,0 +1,102 @@
+<!-- **********  main-panel  ********** -->
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+<div class="main-panel">
+    <div class="panel-hedding">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h1>Compose Sms</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="add-new">
+                    <a class="btn btn-primary" href="#!"> <i class="feather icon-plus"></i> Add new</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 col-lg-3 col-xl-2 border-right">
+                            <div class="mail-sidebar">
+                                <h6 class="title">Folder</h6>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#"><i class="zmdi zmdi-inbox"></i> Inbox <span class="badge badge-pill badge-number badge-primary pull-right">2</span> </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-mail-send"></i> Sent</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="zmdi zmdi-file-text"></i>Drafts</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="zmdi zmdi-eyedropper"></i>Spam</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-delete"></i> Trash</a>
+                                    </li>
+                                </ul>
+                                <h6 class="title mb-15 mt-30">Filters</h6>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="zmdi zmdi-star-outline"></i> Starred</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-alert-circle-o"></i> Important</a>
+                                    </li>
+                                </ul>
+                                <h6 class="title mb-15 mt-30">Labels</h6>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="zmdi zmdi-circle text-primary"></i> Desgin</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-circle text-secondary"></i> job</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-circle text-success"></i>Travels </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-circle text-danger"></i> Inquiries</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="zmdi zmdi-circle text-warning"></i> Personal</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-lg-9 col-xl-10">
+                            <div class="mail-composer">
+                                <h4 class="title">New message</h4>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="Text" class="form-control" id="exampleInputEmail1" placeholder="To">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="Text" class="form-control" id="subject" placeholder="Subject">
+                                    </div>
+                                    <textarea id="editor-demo1" name="groupdesc" cols="3" rows="3"></textarea>
+                                    <div class="reply-button">
+                                        <a class="btn btn-primary" href="#"> <i class="zmdi zmdi-mail-send"></i> Send</a>
+                                        <a class="btn btn-primary" href="#"> <i class="zmdi zmdi-print pr-0"></i> </a>
+                                        <a class="btn btn-primary" href="#"> <i class="zmdi zmdi-delete pr-0"></i> </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<% include ../../partials/footer %>
+<!-- summernote -->
+<!-- wysiwyg editor -->
+<script src="/js/simplemde/simplemde.min.js"></script>
+<script src="/js/simplemde/simplemde.js"></script>

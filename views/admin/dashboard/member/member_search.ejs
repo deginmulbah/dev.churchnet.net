@@ -1,0 +1,81 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+    <div class="main-panel">
+        <div class="panel-hedding">
+            <div class="mb-4">
+                <a href="/admin/member/add"><i class="fa fa-arrow-left mr-2"></i>Add Individual</a>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1>Search Individuals</h1>
+                </div>
+            </div>
+        </div>
+        <!-- tab  -->
+        <div class="tab tab-outline">
+            <ul class="nav" id="myTab-02" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab-02" data-toggle="tab" href="#home-02" role="tab" aria-controls="home" aria-selected="true">Member</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab-02" data-toggle="tab" href="#profile-02" role="tab" aria-controls="profile" aria-selected="false"> Visitor</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent-02">
+                <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02">
+                    <form id="search_member" class="mb-4">
+                        <div class="search-bar">
+                            <input class="form-control border-0" type="search" id="search" name="search" placeholder="type name ,email ,phone number and address..." aria-label="Search">
+                            <span class="la la-search"></span>
+                            <div class="spinner spinner-05 d-none"></div>
+                        </div> 
+                    </form>
+                         <!-- search result -->
+                    <div class="card d-none" id="result_card">
+                        <div class="card-title">
+                            <div class="card-title-left">
+                                <h4 class="card-title-text"><i class="fa fa-search mr-2"></i>Search Result</h4>
+                            </div>
+                            <!-- <div class="card-title-left">
+                                <p><span class="mr-2" id="total_res"></span>Results</p>
+                            </div> -->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h class="card-title"></h>
+                                <table class="table table-centered table-hover mb-0 table-striped" id="result_table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name </th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone number</th>
+                                            <th scope="col">Address</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile-02" role="tabpanel" aria-labelledby="profile-tab-02">
+                    <p>....</p>
+                </div>
+            </div>
+        </div>
+        <!-- tab  end-->
+    </div>
+</div>
+<% include ../../partials/footer %>
+<!-- data table -->
+<script type="text/javascript" src="/js/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="/js/datatables/dataTables.buttons.min.js"></script>
+<!-- select2 -->
+<script type="text/javascript" src="/js/select2/select2.min.js"></script>
+<!-- moments -->
+<script type="text/javascript" src="/js/moment.min.js"></script>
+<!-- datapicker -->
+<script type="text/javascript" src="/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- custom  -->
+<script type="text/javascript" src="/js/view_script/member_details.js"></script>

@@ -1,0 +1,42 @@
+<div class="login-bg pt-5 pt-lg-0" style="background-image: url(images/bg.jpg);">
+    <div class="container-fluid h-100">
+      <div class="row justify-content-center h-100">
+        <div class="col-lg-5 col-xl-3 d-lg-flex justify-content-center align-items-center">
+          <div class="login bg-white py-5 px-5">
+            <% if (errorMessage) { %> 
+              <div class="alert alert-secondary alert-dismissible fade show alert-icon " role="alert">
+                <i class="fa fa-warning"></i> <%= errorMessage %>
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>               
+            <%}%>
+            <div class="title">
+              <h3 class="text-dark">We are Oxoury</h3>
+              <p class="text-dark">Welcome back, please login to you account</p>
+            </div>
+            <form action="/login" method="POST">
+              <div class="form-group">
+                <input type="text" class="form-control" name="username" value="<%= oldInput.username %>" placeholder="username" required>
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" class="form-control" value="<%= oldInput.password %>" placeholder="Password" required>
+              </div>
+              <div class="form-bottom">
+                <div class="custom-control custom-checkbox d-inline-block">
+                  <input type="checkbox" class="custom-control-input" name="remember" id="remember">
+                  <label class="custom-control-label text-dark" for="remember">Remember login</label>
+                </div>
+                <div class="forgot-pass">
+                  <a href="#"> Forgot password </a>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <span class="text-dark">Don't have an account? Create one <a href="#"> here.</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% include ../include/footer %>

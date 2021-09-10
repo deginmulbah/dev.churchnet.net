@@ -1,0 +1,283 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+<!-- **********  main-panel  ********** -->
+<div class="main-panel">
+    <div class="panel-hedding">
+        <div class="mb-4">
+            <a href="/admin/member/list"><i class="fa fa-arrow-left mr-2"></i>Individual</a>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h1>Add An Individual</h1>
+            </div>
+        </div>
+    </div>
+    <div class="tab tab-outline">
+        <ul class="nav" id="myTab-02" role="tablist">
+            <li class="nav-item">
+                 <a class="nav-link active" id="home-tab-02" data-toggle="tab" href="#home-02" role="tab" aria-controls="home" aria-selected="true">
+                    Member</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab-02" data-toggle="tab" href="#profile-02" role="tab" aria-controls="profile" aria-selected="false">Visitor</a>
+            </li>
+       </ul>
+       <div class="tab-content" id="myTabContent-02">
+         <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02"> 
+            <div class="row">
+                <div class="col-12">
+                        <!-- **********	personal info ********** -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h5 class="card-title add-title"><i class="la la-user mr-3"></i>Personal</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="firstname" class="mb-3">First Name</label>
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="middlename">Middle Name</label>
+                                            <input type="text" class="form-control" id="middlename">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name</label>
+                                            <input type="text" class="form-control" id="lastname">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="gender" class="mb-3">Gender</label>
+                                            <div class="custom-control custom-radio mb-3">
+                                                <input type="radio" id="customRadio1" name="gender" class="custom-control-input ">
+                                                <label class="custom-control-label" for="customRadio1">Male</label>
+                                              </div>
+                                              <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" name="gender" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio2">Female</label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="gender" class="mb-3">Picture</label>
+                                            <div class="preview-zone d-none">
+                                                <div class="box box-solid">
+                                                    <div class="box-tools">
+                                                        <p id="remove-preview">
+                                                          <i class="fa fa-times"></i>
+                                                        </p>
+                                                    </div>
+                                                  <div class="box-body"></div>
+                                                </div>
+                                              </div>
+                                            <div>
+                                                <p>File must be smaller than 5MB and either PNG or JPG/JPEG.</p>
+                                            </div>
+                                            <div class="dropzone-wrapper">
+                                                <div class="dropzone-desc">
+                                                  <i class="fa fa-upload"></i>
+                                                  <p>Choose an image file or drag it here.</p>
+                                                </div>
+                                                <input type="file" name="img_logo" class="dropzone" onchange="readFile(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- **********	Date info ********** -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title add-title"><i class="la la-calendar mr-3"></i>Dates</h5>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="dob">Birthdate</label>
+                                         <div class="icon-input">
+                                            <i class="fa fa-calendar"></i>
+                                            <input type="text" class="form-control date-picker" name="dob" id="dob">
+                                         </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="databaptized">Date Baptized</label>
+                                        <div class="icon-input">
+                                            <i class="fa fa-calendar"></i>
+                                            <input type="text" class="form-control date-picker" name="databaptized" id="databaptized">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="databaptized">Join Date</label>
+                                        <div class="icon-input">
+                                            <i class="fa fa-calendar"></i>
+                                            <input type="text" class="form-control date-picker" name="joindate" id="joindate">
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                        <!-- **********	contact info ********** -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h5 class="card-title add-title"><i class="la la-phone mr-3"></i>Contact</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="homephone">Home Phone</label>
+                                            <input type="text" class="form-control" id="homephone" name="homephone"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cellphone">Cell Phone</label>
+                                            <input type="text" class="form-control" id="cellphone" name="cellphone"/>
+                                            <span></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="workphone">Home Phone</label>
+                                            <input type="text" class="form-control" id="workphone" name="workphone"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="primaryemail">Primary Email</label>
+                                            <input type="email" class="form-control" id="primaryemail" name="primaryemail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="secondaryemail">Secondary Email</label>
+                                            <input type="email" class="form-control" id="secondaryemail" name="secondaryemail">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- **********	address info ********** -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h5 class="card-title add-title"><i class="la la-map-marker mr-3"></i>Address</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <textarea class="form-control" name="address" id="address" cols="10" rows="2"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" id="city" name="city">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="state">State</label>
+                                                <input type="text" class="form-control" id="state" name="state">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="country">Country</label>
+                                                <input type="text" class="form-control" id="country">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title add-title"><i class="la la-sitemap mr-3"></i>Groups</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-md-7">
+                                        <label for="group"></label>
+                                        <select class="group" name="group" id="group">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                         </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="sticky-panel">
+                <button type="submit" class="btn btn-primary mr-3">Save</button>
+            </div>
+        </div>
+        <!-- visitor -->
+        <div class="tab-pane fade" id="profile-02" role="tabpanel" aria-labelledby="profile-tab-02">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5 class="card-title add-title"><i class="la la-user mr-3"></i>Visitor</h5>
+                    </div>
+                    <form action="/admin/member/visitor" method="post">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="firstname" class="mb-3">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname">
+                            </div>
+                            <div class="form-group">
+                                <label for="middlename">Middle Name</label>
+                                <input type="text" class="form-control" id="middlename" name="middlename">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="gender" class="mb-3">Gender</label>
+                                <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" id="male" name="gender" class="custom-control-input" value="male">
+                                    <label class="custom-control-label" for="male">Male</label>
+                                  </div>
+                                  <div class="custom-control custom-radio">
+                                    <input type="radio" id="female" name="gender" class="custom-control-input" value="female">
+                                    <label class="custom-control-label" for="female">Female</label>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="phone" class="mb-3">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="vaddress">Address</label>
+                                <textarea class="form-control" name="address" id="vaddress" cols="10" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sticky-panel">
+                <button type="submit" class="btn btn-primary mr-3">Save</button>
+            </div>
+        </form>
+         </div>
+        </div>
+    </div>
+</div>
+<!-- bootstrap-wizard -->
+<% include ../../partials/footer %>
+<!-- **********  Wrapper end  ********** -->
+<script type="text/javascript" src="/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<!-- datapicker -->
+<script type="text/javascript" src="/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- jquery validation -->
+<script type="text/javascript" src="/js/jquery-validation/jquery.validate.min.js"></script>
+<!-- flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- select2 -->
+<script type="text/javascript" src="/js/select2/select2.min.js"></script>
+<!-- drop zone -->
+<script src="/js/drop-zone.js"></script>
+<!-- custome -->
+<script type="text/javascript" src="/js/view_script/register_member.js"></script>
