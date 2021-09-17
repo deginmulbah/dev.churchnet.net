@@ -1,0 +1,166 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+<div class="main-panel">
+	<div class="panel-hedding">
+        <div class="mb-4">
+            <a href="/admin/group/list"><i class="fa fa-arrow-left mr-2"></i>Group Lists</a>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h1><%= info.group_name %></h1>
+            </div>
+        </div>
+    </div>
+	<div class="tab tab-outline">
+		<ul class="nav" id="myTab-02" role="tablist">
+			<li class="nav-item">
+			    <a class="nav-link active" id="home-tab-02" data-toggle="tab" href="#home-02" role="tab" aria-controls="home" aria-selected="true">
+			    	Group Information</a>
+			</li>
+			<li class="nav-item">
+			   <a class="nav-link" id="contact-tab-03" data-toggle="tab" href="#contact-02" role="tab" aria-controls="contact" aria-selected="false">
+			      Edit Group</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent-02">
+		  <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02">
+		  		<% if (info.group_desc != '') { -%>
+			  		<div class="card">
+			  			<div class="card-body">
+			  				<div><%= info.group_desc %></div>
+			  			</div>
+			  		</div>
+		  		<% } -%>
+                <!-- Group -->
+                <div class="card" id="result_card">
+                    <div class="card-body">
+                        	<div>
+                        		<h6 style="font-weight: 900;">Group Leader(s):
+	                        		<% for (var i = 0; i < info.leaders.length; i++) { -%>
+	                        			<span style="font-size: 12px; font-weight: normal;">
+	                        				<%= info.leaders[i].firstname %> 
+	                        				<%= info.leaders[i].middlename %>
+	                        				<%= info.leaders[i].lastname %>
+	                        			</span>
+	                        		<% } -%>
+	                        		<span class="ml-2" style="font-size: 12px; font-weight: normal;">(<a href="#" data-toggle="modal" data-target="#exampleModal-02">Edit</a>)</span>
+                        	    </h6>
+                        	    <h6 style="font-weight: 900;">Group schedule:<span class="ml-2" style=" font-weight: normal; font-size: 12px;">(<a href="#" data-toggle="modal" data-target="#exampleModal">View</a>)</span></h6>
+                        	</div>
+                        	<div>
+                        	</div>
+                            <div class="search_table">
+                                <input type="text" class="form-control" id="filter_table" placeholder="search...">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-centered table-hover mb-0 table-striped" id="member_list">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name </th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <% for (let i = 0; i < members.length; i++) { -%>
+                                	 	 <tr>
+                                	 	 	<td>
+                                	 	 		<a class="d-flex align-items-center" href="/admin/member/member_profile/<%= members[i]._id%>">
+								                <div class="avatar-initial mr-3">
+								                <span class="avatar-text bg-dark text-white rounded"><span class="initial-wrap"><span><%= members[i].initial%></span></span>
+								                </span>
+								                </div>
+								                 <span>
+								                 	<%= members[i].firstname %> <%= members[i].middlename %> <%= members[i].lastname %></span>
+								                </a>
+                                	 	 	</td>
+                                	 	 	<td><%= members[i].gender%></td>
+                                	 	 	<td><%= members[i].contact.primaryemail%></td>
+                                	 	 	<td><%= members[i].contact.primarynumber%></td>
+                                	 	 </tr>
+                                    	<% } -%> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+		  </div>
+		   <div class="tab-pane fade" id="contact-02" role="tabpanel" aria-labelledby="contact-tab-02">
+			  	<p>....</p>
+		    </div>
+		</div>
+	</div>
+</div>
+<!--Group Schedule Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Group Schedule</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<ul class="list-group">
+      		<% for (var i = 0; i < info.meeting_days.length; i++) { -%>
+	      		<li class="list-group-item d-flex justify-content-between align-items-center">
+					<%= info.meeting_days[i]%>
+					<span class="badge badge-primary badge-pill">4:00pm</span>
+				</li>
+      		<% } -%>
+		</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Edit group leader Modal -->
+<div class="modal fade" id="exampleModal-02" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content">
+	    <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Edit Leader(s)</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	     </div>
+	      <div class="modal-body p-5">
+	      	<form>
+				<div class="form-group">
+				    <label for="username">Choose Leader</label>
+				    <select class="form-control" name="leaders" multiple="multiple" id="group_leader"></select>
+				</div>
+				<div>
+				  	<p>Current leader(s)</p>	
+				</div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+        	<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        	<button type="button" class="btn btn-primary">Save</button>
+      </div>
+	 </div>
+	</div>
+</div> 
+<% include ../../partials/footer %>
+<!-- wizard -->
+<script type="text/javascript" src="/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<!-- data table -->
+<script type="text/javascript" src="/js/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="/js/datatables/dataTables.buttons.min.js"></script>
+<!-- datapicker -->
+<script type="text/javascript" src="/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap-duallistbox -->
+<script type="text/javascript" src="/js/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- select2 -->
+<script type="text/javascript" src="/js/select2/select2.min.js"></script>
+<!-- jquery validation -->
+<script type="text/javascript" src="/js/jquery-validation/jquery.validate.min.js"></script>
+<!-- custome -->
+<script type="text/javascript" src="/js/view_script/group_details.js"></script>

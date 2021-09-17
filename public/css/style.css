@@ -8976,4 +8976,49 @@ h6 a,
   float: left;
   padding-right: 15px;
 }
-
+/* sweetalert2 */
+.swal2-popup {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    border-radius:0;
+    padding: 1.25em;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.swal2-icon {
+    position: relative;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    /* margin: 1.25em auto 1.875em; */
+    border: .25em solid transparent;
+    border-radius: 50%;
+    line-height: 5em;
+    cursor: default;
+    box-sizing: content-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    zoom: normal;
+};
+.swal2-icon.swal2-success {
+    border-color: #c2ffa0;
+}
+.swal2-popup .swal2-title {
+    display: block;
+    position: relative;
+    max-width: 100%;
+    color: #595959;
+    font-size: 1.5em;
+    font-weight: 200;
+    text-align: center;
+    text-transform: none;
+    word-wrap: break-word;
+}

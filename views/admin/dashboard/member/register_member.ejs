@@ -25,45 +25,49 @@
        </ul>
        <div class="tab-content" id="myTabContent-02">
          <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02"> 
-            <div class="row">
-                <div class="col-12">
-                        <!-- **********	personal info ********** -->
-                        <div class="card">
-                            <div class="card-body">
+             <div class="row">
+                 <div class="col-12">
+                    <form id="member_form">
+                     <!-- **********personal info ********** -->
+                     <div class="card">
+                         <div class="card-body">
                                 <div class="mb-4">
                                     <h5 class="card-title add-title"><i class="la la-user mr-3"></i>Personal</h5>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label for="firstname" class="mb-3">First Name</label>
-                                            <input type="text" class="form-control" id="firstname">
+                                            <label for="firstname" class="mb-3">First Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="firstname" name="fname">
+                                            <span class="error"></span>
                                         </div>
                                         <div class="form-group">
                                             <label for="middlename">Middle Name</label>
-                                            <input type="text" class="form-control" id="middlename">
+                                            <input type="text" class="form-control" id="middlename" name="mname">
                                         </div>
                                         <div class="form-group">
-                                            <label for="lastname">Last Name</label>
-                                            <input type="text" class="form-control" id="lastname">
+                                            <label for="lastname">Last Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="lastname" name="lname">
+                                            <span class="error"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="gender" class="mb-3">Gender</label>
+                                            <label for="gender" class="mb-3">Gender <span class="text-danger">*</span></label>
                                             <div class="custom-control custom-radio mb-3">
-                                                <input type="radio" id="customRadio1" name="gender" class="custom-control-input ">
+                                                <input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male">
                                                 <label class="custom-control-label" for="customRadio1">Male</label>
-                                              </div>
-                                              <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio2" name="gender" class="custom-control-input">
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" name="gender" class="custom-control-input" value="female">
                                                 <label class="custom-control-label" for="customRadio2">Female</label>
-                                              </div>
+                                            </div>
+                                            <span class="gerror"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label for="gender" class="mb-3">Picture</label>
+                                            <label for="user_avater" class="mb-3">Picture</label>
                                             <div class="preview-zone d-none">
                                                 <div class="box box-solid">
                                                     <div class="box-tools">
@@ -82,7 +86,8 @@
                                                   <i class="fa fa-upload"></i>
                                                   <p>Choose an image file or drag it here.</p>
                                                 </div>
-                                                <input type="file" name="img_logo" class="dropzone" onchange="readFile(this)">
+                                                <input type="file" name="user_avater" id="user_avater" class="dropzone" onchange="readFile(this)">
+                                                <span class="error"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -95,10 +100,11 @@
                                 <h5 class="card-title add-title"><i class="la la-calendar mr-3"></i>Dates</h5>
                                  <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <label for="dob">Birthdate</label>
+                                        <label for="dob">Birthdate <span class="text-danger">*</span></label>
                                          <div class="icon-input">
                                             <i class="fa fa-calendar"></i>
                                             <input type="text" class="form-control date-picker" name="dob" id="dob">
+                                            <span class="error"></span>
                                          </div>
                                     </div>
                                     <div class="form-group col-md-3">
@@ -106,13 +112,15 @@
                                         <div class="icon-input">
                                             <i class="fa fa-calendar"></i>
                                             <input type="text" class="form-control date-picker" name="databaptized" id="databaptized">
+                                            <span class="error"></span>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="databaptized">Join Date</label>
+                                        <label for="databaptized">Join Date <span class="text-danger">*</span></label>
                                         <div class="icon-input">
                                             <i class="fa fa-calendar"></i>
                                             <input type="text" class="form-control date-picker" name="joindate" id="joindate">
+                                            <span class="error"></span>
                                         </div>
                                     </div>
                                  </div>
@@ -127,27 +135,24 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="homephone">Home Phone</label>
-                                            <input type="text" class="form-control" id="homephone" name="homephone"/>
+                                            <label for="homephone">Primary Phone <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="primaryphone" name="phone1" />
+                                            <span class="error"></span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="cellphone">Cell Phone</label>
-                                            <input type="text" class="form-control" id="cellphone" name="cellphone"/>
-                                            <span></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="workphone">Home Phone</label>
-                                            <input type="text" class="form-control" id="workphone" name="workphone"/>
+                                            <label for="cellphone">Secondary Phone</label>
+                                            <input type="text" class="form-control" id="secondarynumber" name="phone2"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="primaryemail">Primary Email</label>
-                                            <input type="email" class="form-control" id="primaryemail" name="primaryemail">
+                                            <label for="primaryemail">Primary Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="primaryemail" name="primaryemail" />
+                                            <span class="error"></span>
                                         </div>
                                         <div class="form-group">
                                             <label for="secondaryemail">Secondary Email</label>
-                                            <input type="email" class="form-control" id="secondaryemail" name="secondaryemail">
+                                            <input type="email" class="form-control" id="secondaryemail" name="secondaryemail"/>
                                         </div>
                                     </div>
                                 </div>
@@ -163,21 +168,21 @@
                                     <div class="col-md-6">
                                         <div class="card-body">
                                         <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <textarea class="form-control" name="address" id="address" cols="10" rows="2"></textarea>
+                                            <label for="address">Address <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="address" id="address" cols="10" rows="2"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="city">City</label>
-                                            <input type="text" class="form-control" id="city" name="city">
+                                            <input type="text" class="form-control" id="city" name="city" />
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="state">State</label>
-                                                <input type="text" class="form-control" id="state" name="state">
+                                                <input type="text" class="form-control" id="state" name="state"/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="country">Country</label>
-                                                <input type="text" class="form-control" id="country">
+                                                <input type="text" class="form-control" id="country" name="country"/>
                                             </div>
                                         </div>
                                     </div>
@@ -197,11 +202,12 @@
                                     </div>
                                 </div>
                          </div>
-                    </div>
-                 </div>
-            </div>
-            <div class="sticky-panel">
-                <button type="submit" class="btn btn-primary mr-3">Save</button>
+                     </div>
+                    <div class="sticky-panel">
+                        <button id="member_form_btn" type="submit" class="btn btn-primary mr-3">Save</button>
+                        </div>
+                </form>
+                </div>
             </div>
         </div>
         <!-- visitor -->
@@ -279,5 +285,7 @@
 <script type="text/javascript" src="/js/select2/select2.min.js"></script>
 <!-- drop zone -->
 <script src="/js/drop-zone.js"></script>
+<!-- sweetalert2 -->
+<script src="/js/sweetalert2/sweetalert2.min.js"></script>
 <!-- custome -->
 <script type="text/javascript" src="/js/view_script/register_member.js"></script>

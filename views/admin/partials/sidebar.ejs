@@ -39,19 +39,14 @@
       </a>
       <ul class="sidebar-submenu">
         <li <% if (pageName === 'dept_index') { %>class="active" <% }%>>
-          <a href="/admin/department/list"
-            ><i class="la la-list"></i> <span>List</span>
+          <a href="/admin/group/add"
+            ><i class="la la-users"></i> <span>Add</span>
           </a>
         </li>
         <li <% if (pageName === 'group_member') { %>class="active" <% }%>>
-          <a href="/admin/department/group_members">
-            <i class="la la-angle-double-right"></i>
-            <span> Group Members </span>
-          </a>
-        </li>
-        <li>
-          <a href="form-colorpicker.html"
-            ><i class="la la-angle-double-right"></i> <span> Talent</span>
+          <a href="/admin/group/list">
+            <i class="la la-list-ul"></i>
+            <span>Group List</span>
           </a>
         </li>
       </ul>

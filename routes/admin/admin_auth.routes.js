@@ -32,12 +32,7 @@ router.post('/createuser',
     }), admin_auth.signUp);
 
 router.post('/login',
-  // body('username')
-  //   .trim()
-  //   .isEmail()
-  //   .withMessage('Please enter a valid email address.')
-  //   .normalizeEmail()
-  admin_auth.loginuser);
+admin_auth.loginuser);
 
 router.post('/logout', admin_auth.logout)
 

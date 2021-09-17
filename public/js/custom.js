@@ -503,13 +503,13 @@
     /* ------------------------------------------------------------------------
      * datepicker
      * ------------------------------------------------------------------------ */
-    $(".date-picker").flatpickr({
-      position:'above',
-      altInput: true,
-      altFormat: "F j, Y",
-      dateFormat: "Y-m-d",
-      allowInput: true,
-    });
+    // $(".date-picker").flatpickr({
+    //   position:'above',
+    //   altInput: true,
+    //   altFormat: "F j, Y",
+    //   dateFormat: "Y-m-d",
+    //   allowInput: true,
+    // });
     /* ------------------------------------------------------------------------
      * Duallistbox
      * ------------------------------------------------------------------------ */

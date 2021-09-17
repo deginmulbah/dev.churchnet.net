@@ -10,7 +10,7 @@
         </div> -->
         <div class="row mb-4">
             <div class="col-md-6">
-              <h5 class="text-capitalize"><%= member_info.firstname %> <%= member_info.middlename %> <%= member_info.lastname%></h5>
+              <h5 class="text-capitalize"><%= member.firstname %> <%= member.middlename %> <%= member.lastname%></h5>
             </div>
         </div>
       </div>
@@ -40,13 +40,24 @@
                            <div class="personal-panel panel">
                              <!-- profile pic -->
                               <div class="profile-reponsive mb-2">
-                                <div class="userprofile">jdm</div>
+                                <div class="userprofile text-uppercase">
+                                  <%= member.initial %>
+                                  <!-- <% if (member.avater) { -%>
+                                    <img src="/images/uploads/useravater/8.png" alt="user profile">
+                                  <% } else { -%>
+                                    <%= member.initial %>
+                                  <% } -%> -->
+                                </div>
                               </div>
                               <!-- member basic info -->
                                <div class="name">
-                                  <h4><%= member_info.firstname %> <%= member_info.lastname%></h4>
-                                  <sapn><%= member_info.gender %></sapn>
-                                  <p class="mt-0"><%= moment().diff(moment(member_info.dob, "DD-MM-YYYY"), 'year'); %> yrs (<%= moment(member_info.dob).format("MMM DD YYYY") %>)</p>
+                                  <h4><%= member.firstname %> <%= member.middlename %> <%= member.lastname %></h4>
+                                  <sapn><%= member.gender %></sapn>
+                                  <p class="mt-0">
+                                    <% if (member.dates) { -%>
+                                      <%= moment().diff(moment(member.dates.dob, "DD-MM-YYYY"), 'year'); %> yrs (<%= moment(member.dates.dob).format("MMM DD YYYY") %>)
+                                    <% } -%>
+                                  </p>
                                 </div>
                            </div>
                            <hr />
@@ -57,88 +68,154 @@
                         </div>
                       </div>
                       <!-- contact info -->
-                      <div class="card">
+                      <% if (member.contact) { %>
+                        <div class="card">
                         <div class="card-body contact-panel">
                           <div class="panel-heading">Contact Info</div>
-                            <% if (member_info.contact.email) { %>
+                            <% if (member.contact.primaryemail) { %>
                               <div class="info-details">
                                 <div class="d-flex details">
                                   <div class="info">
                                     <p><i class="fa fa-envelope-open mr-2"></i>Email</p>
                                   </div>
                                   <div class="info">
-                                    <p><%= member_info.contact.email %></p>
+                                    <p><%= member.contact.primaryemail %></p>
                                   </div>
                                 </div>
                               </div>
                               <% } %>
-                              <% if (member_info.contact.phone1) { %>
+                              <% if (member.contact.secondaryemail) { %>
+                              <div class="info-details">
+                                <div class="d-flex details">
+                                  <div class="info">
+                                    <p><i class="fa fa-envelope-open mr-2"></i>Secondary Email</p>
+                                  </div>
+                                  <div class="info">
+                                    <p><%= member.contact.secondaryemail %></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+                              <% if (member.contact.primarynumber) { %>
                                 <div class="info-details">
                                   <div class="d-flex details">
                                     <div class="info">
                                       <p><i class="fa fa-mobile-phone mr-2"></i>Phone <br/><span>(Home)</span></p>
                                     </div>
                                     <div class="info">
-                                      <p><%= member_info.contact.phone1 %></p>
+                                      <p><%= member.contact.primarynumber %></p>
+                                    </div>
+                                  </div>
+                                </div>
+                              <% } %>
+                              <% if (member.contact.secondarynumber) { %>
+                                <div class="info-details">
+                                  <div class="d-flex details">
+                                    <div class="info">
+                                      <p><i class="fa fa-mobile-phone mr-2"></i>Phone <br/><span>(work)</span></p>
+                                    </div>
+                                    <div class="info">
+                                      <p><%= member.contact.secondarynumber %></p>
                                     </div>
                                   </div>
                                 </div>
                               <% } %>
                         </div>
                       </div>
+                      <% } %>
                       <!-- address info -->
+                      <% if (member.address) { %>
                       <div class="card">
                         <div class="card-body">
                           <div class="panel-heading">Address</div>
                               <div class="details">
                                 <div class="info">
-                                  <p><i class="fa fa-map-maker"></i><%= member_info.contact.address %></p>
+                                  <p><i class="fa fa-home mr-2"></i><%= member.address.address %></p>
                                 </div>
                               </div>
+                              <% if (member.address.city) { %>
+                              <div class="info-details">
+                                  <div class="d-flex details">
+                                    <div class="info">
+                                      <p class="text-capitalize"><i class="fa fa-building-o mr-2"></i>city:<br/></p>
+                                    </div>
+                                    <div class="info">
+                                      <p><%= member.address.city %></p>
+                                    </div>
+                                  </div>
+                              </div>
+                            <% } %>
+                            <% if (member.address.state) { %>
+                              <div class="info-details">
+                                  <div class="d-flex details">
+                                    <div class="info">
+                                      <p class="text-capitalize"><i class="fa fa-building mr-2"></i>State:<br/></p>
+                                    </div>
+                                    <div class="info">
+                                      <p><%= member.address.state %></p>
+                                    </div>
+                                  </div>
+                              </div>
+                            <% } %>
+                            <% if (member.address.country) { %>
+                              <div class="info-details">
+                                  <div class="d-flex details">
+                                    <div class="info">
+                                      <p class="text-capitalize"><i class="fa fa-flag mr-2"></i>country:<br/></p>
+                                    </div>
+                                    <div class="info">
+                                      <p><%= member.address.country %></p>
+                                    </div>
+                                  </div>
+                              </div>
+                            <% } %>
                         </div>
                       </div>
-                      <!--  info -->
+                      <% } %>
+                      <!-- Date info -->
+                      <% if (member.dates) { %>
                       <div class="card">
                         <div class="card-body">
                           <div class="panel-heading">Dates</div>
-                          <% if (member_info.dob) { %>
+                          <% if (member.dates.dob) { %>
                             <div class="info-details">
                               <div class="d-flex details">
                                  <div class="info">
                                     <p><i class="fa fa-birthday-cake mr-2"></i>Birthdate</p>
                                  </div>
                                  <div class="info">
-                                    <p><%= moment(member_info.dob).format("MMM DD YYYY") %><span class="ml-2">(<%= moment().diff(moment(member_info.dob, "DD-MM-YYYY"), 'year'); %> yrs)</span></p>
+                                    <p><%= moment(member.dates.dob).format("MMM DD YYYY") %><span class="ml-2">(<%= moment().diff(moment(member.dates.dob, "DD-MM-YYYY"), 'year'); %> yrs)</span></p>
                                  </div>
                               </div>
                             </div>
                           <% } %>
-                          <% if (member_info.baptism.data_bapts) { %>
+                          <% if (member) { %>
                             <div class="info-details">
                               <div class="d-flex details">
                                  <div class="info">
                                     <p><i class="fa fa-tint mr-2"></i>Baptized On</p>
                                  </div>
                                  <div class="info">
-                                    <p><%= moment(member_info.baptism.data_bapts).format("MMM DD YYYY") %></p>
+                                    <p><%= moment(member.dates.dob).format("MMM DD YYYY") %></p>
                                  </div>
                               </div>
                             </div>
                           <% } %>
-                          <% if (member_info.joined_date) { %>
+                          <% if (member.dates.joined_date) { %>
                             <div class="info-details">
                               <div class="d-flex details">
                                  <div class="info">
                                     <p><i class="fa fa-calendar-check-o mr-2"></i>Join Date</p>
                                  </div>
                                  <div class="info">
-                                    <p><%= moment(member_info.joined_date).format("MMM DD YYYY") %></p>
+                                    <p><%= moment(member.dates.joined_date).format("MMM DD YYYY") %></p>
                                  </div>
                               </div>
                             </div>
                           <% } %>
                         </div>
                       </div>
+                    <% } %>
                   </div>
                   <div class="col-md-8">
                     <div class="card">
@@ -191,7 +268,9 @@
           <div class="tab-pane fade mb-5" id="profile-02" role="tabpanel" aria-labelledby="profile-tab-02">
               <div class="row">
                   <div class="col-12">
+                    <form action="/admin/member/update_member" method="POST" enctype="multipart/form-data">
                           <!-- **********	personal info ********** -->
+                          <input type="hidden" value="<%=member._id%>" name="id" />
                           <div class="card">
                               <div class="card-body">
                                   <div class="mb-4">
@@ -201,26 +280,26 @@
                                       <div class="col-md-5">
                                           <div class="form-group">
                                               <label for="firstname" class="mb-3">First Name</label>
-                                              <input type="text" class="form-control" id="firstname">
+                                              <input type="text" class="form-control" id="firstname" name="fname" value="<%= member.firstname%>">
                                           </div>
                                           <div class="form-group">
                                               <label for="middlename">Middle Name</label>
-                                              <input type="text" class="form-control" id="middlename">
+                                              <input type="text" class="form-control" id="middlename" name="mname" value="<%= member.middlename %>">
                                           </div>
                                           <div class="form-group">
                                               <label for="lastname">Last Name</label>
-                                              <input type="text" class="form-control" id="lastname">
+                                              <input type="text" class="form-control" id="lastname" name="lname" value="<%= member.lastname %>">
                                           </div>
                                       </div>
                                       <div class="col-md-2">
                                           <div class="form-group">
                                               <label for="gender" class="mb-3">Gender</label>
-                                              <div class="custom-control custom-radio mb-3">
-                                                  <input type="radio" id="customRadio1" name="gender" class="custom-control-input ">
+                                                <div class="custom-control custom-radio mb-3">
+                                                <input type="radio" id="customRadio1" name="gender" class="custom-control-input" <%= (member.gender === "male" ) ? 'checked':''%> value="<%= member.gender %>">
                                                   <label class="custom-control-label" for="customRadio1">Male</label>
                                                 </div>
                                                 <div class="custom-control custom-radio">
-                                                  <input type="radio" id="customRadio2" name="gender" class="custom-control-input">
+                                                  <input type="radio" id="customRadio2" name="gender" class="custom-control-input"  <%= (member.gender === "female" ) ? 'checked':''%> value="<%= member.gender %>">
                                                   <label class="custom-control-label" for="customRadio2">Female</label>
                                                 </div>
                                           </div>
@@ -262,21 +341,21 @@
                                           <label for="dob">Birthdate</label>
                                            <div class="icon-input">
                                               <i class="fa fa-calendar"></i>
-                                              <input type="text" class="form-control date-picker" name="dob" id="dob">
+                                              <input type="text" class="form-control date-picker" name="dob" id="dob" value="<%= moment(member.dob).format("MMM DD YYYY") %>">
                                            </div>
                                       </div>
                                       <div class="form-group col-md-3">
                                           <label for="databaptized">Date Baptized</label>
                                           <div class="icon-input">
                                               <i class="fa fa-calendar"></i>
-                                              <input type="text" class="form-control date-picker" name="databaptized" id="databaptized">
+                                              <input type="text" class="form-control date-picker" name="databaptized" id="databaptized" value="<%= moment(member.date_bapts).format("MMM DD YYYY") %>">
                                           </div>
                                       </div>
                                       <div class="form-group col-md-3">
                                           <label for="databaptized">Join Date</label>
                                           <div class="icon-input">
                                               <i class="fa fa-calendar"></i>
-                                              <input type="text" class="form-control date-picker" name="joindate" id="joindate">
+                                              <input type="text" class="form-control date-picker" name="joindate" id="joindate" value="<%= moment(member.joined_date).format("MMM DD YYYY") %>">
                                           </div>
                                       </div>
                                    </div>
@@ -292,26 +371,22 @@
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="homephone">Home Phone</label>
-                                              <input type="text" class="form-control" id="homephone" name="homephone"/>
+                                              <input type="text" class="form-control" id="homephone" name="phone1" value="<%= member.contact.primarynumber %>"/>
                                           </div>
                                           <div class="form-group">
                                               <label for="cellphone">Cell Phone</label>
-                                              <input type="text" class="form-control" id="cellphone" name="cellphone"/>
+                                              <input type="text" class="form-control" id="cellphone" name="phone2" value="<%= member.contact.secondarynumber %>"/>
                                               <span></span>
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="workphone">Home Phone</label>
-                                              <input type="text" class="form-control" id="workphone" name="workphone"/>
                                           </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="primaryemail">Primary Email</label>
-                                              <input type="email" class="form-control" id="primaryemail" name="primaryemail">
+                                              <input type="email" class="form-control" id="primaryemail" name="primaryemail" value="<%= member.contact.primaryemail %>">
                                           </div>
                                           <div class="form-group">
                                               <label for="secondaryemail">Secondary Email</label>
-                                              <input type="email" class="form-control" id="secondaryemail" name="secondaryemail">
+                                              <input type="email" class="form-control" id="secondaryemail" name="secondaryemail" value="<%= member.contact.secondaryemail %>">
                                           </div>
                                       </div>
                                   </div>
@@ -324,24 +399,24 @@
                                       <h5 class="card-title add-title"><i class="la la-map-marker mr-3"></i>Address</h5>
                                   </div>
                                   <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="card-body">
+                                    <div class="col-md-6">
+                                      <div class="card-body">
                                           <div class="form-group">
                                               <label for="address">Address</label>
-                                              <textarea class="form-control" name="address" id="address" cols="10" rows="2"></textarea>
+                                              <input type="text" class="form-control" name="address" id="address" value="<%= member.address.address%>">
                                           </div>
                                           <div class="form-group">
                                               <label for="city">City</label>
-                                              <input type="text" class="form-control" id="city" name="city">
+                                              <input type="text" class="form-control" id="city" name="city" value="<%= member.address.city %>">
                                           </div>
                                           <div class="form-row">
                                               <div class="form-group col-md-6">
                                                   <label for="state">State</label>
-                                                  <input type="text" class="form-control" id="state" name="state">
+                                                  <input type="text" class="form-control" id="state" name="state" value="<%= member.address.state %>">
                                               </div>
                                               <div class="form-group col-md-6">
                                                   <label for="country">Country</label>
-                                                  <input type="text" class="form-control" id="country">
+                                                  <input type="text" class="form-control" id="country" name="country" value="<%= member.address.country %>">
                                               </div>
                                           </div>
                                       </div>
@@ -360,12 +435,13 @@
                                           </select>
                                       </div>
                                   </div>
-                           </div>
-                      </div>
+                              </div>
+                          </div>
+                          <div class="sticky-panel">
+                            <button type="submit" class="btn btn-primary mr-3">Save</button>
+                          </div>
+                        </form>
                    </div>
-              </div>
-              <div class="sticky-panel">
-                  <button type="submit" class="btn btn-primary mr-3">Save</button>
               </div>
           </div>
         <!-- edit profile //-->
@@ -394,8 +470,8 @@
         </button>
       </div>
       <div class="modal-body">
-       <p>Username: <span class="text-danger"><%= member_info.username %></span></p>
-       <p>Password: <span class="text-danger"><%= member_info.password %></span></p>
+       <p>Username: <span class="text-danger"><%= member.username %></span></p>
+       <p>Password: <span class="text-danger"><%= member.password %></span></p>
       </div>
     </div>
   </div>
