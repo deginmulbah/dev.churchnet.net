@@ -69,7 +69,7 @@ app.use(session({
 app.use(flash());
 app.use(flashMessageMiddleware.flashMessage);
 // app routes  
-app.use(admin_auth);        
+app.use(admin_auth);
 app.use('/admin', is_auth, adminDashboard);
 app.use('/admin/member',is_auth, member);
 app.use('/admin/group',is_auth, group);
@@ -84,7 +84,7 @@ app.use('/admin/dashboard',is_auth, dashboard);
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
-const port = process.env.PORT || 500
+const port = process.env.PORT || 5000
 app.listen(port, () => {
     console.log(`server is running on ${port}`)
 })
