@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="267.562" height="64.875" viewBox="0 0 267.562 64.875">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #335eea;
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        font-size: 60px;
+        fill: #161c2d;
+        font-family: Roboto;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="shape">
+    <path class="cls-1" d="M308.188,311.811s-11.573-23.147,12.805-38.169c0,0,6.441,5.672,7.88,7.634,0,0,4.86,6.586-1.477,11.574Z" transform="translate(-305.438 -269.125)"/>
+    <path id="Shape_1_copy" data-name="Shape 1 copy" class="cls-1" d="M324.571,271.573s23.422-11.008,37.846,13.729c0,0-5.827,6.3-7.823,7.692,0,0-6.7,4.7-11.535-1.758Z" transform="translate(-305.438 -269.125)"/>
+    <path id="Shape_1_copy_2" data-name="Shape 1 copy 2" class="cls-1" d="M364.667,288.717s11.283,23.29-13.282,38.006c0,0-6.369-5.752-7.784-7.732,0,0-4.776-6.646,1.622-11.554Z" transform="translate(-305.438 -269.125)"/>
+    <path id="Shape_1_copy_3" data-name="Shape 1 copy 3" class="cls-1" d="M348.385,328.488s-22.906,12.045-38.423-12.022c0,0,5.539-6.555,7.471-8.034,0,0,6.485-4.993,11.6,1.241Z" transform="translate(-305.438 -269.125)"/>
+  </g>
+  <text id="Oxoury_" data-name="Oxoury " class="cls-2" x="76.873" y="51.776">Oxoury </text>
+</svg>

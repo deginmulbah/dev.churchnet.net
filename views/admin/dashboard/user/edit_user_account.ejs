@@ -1,0 +1,105 @@
+<% include ../../partials/header %>
+<style>
+	.card-title-text i{ 
+		color:#1c4ce8;
+		margin-right: 16px;
+		font-size: 20px;
+	}
+</style>
+<div class="wrapper">
+		<% include ../../partials/sidebar %>
+    <div class="main-panel">
+		<div class="panel-hedding">
+			<nav class="row">
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">
+							<a href="javascript:history.go(-1)">
+								<i class="la la-long-arrow-left"></i>
+							</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page"><%= pageTitle %> </li>
+					</ol>
+				</div>
+			</nav>
+        </div>
+        <div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text"><i class="feather icon-user-plus"></i><%= pageTitle %></h4>
+						</div>
+					</div>
+				    <div class="card-body">
+					   <form id="edituser" action="/admin/user/update_user_account" method="POST">
+							<div class="row">
+								<!-- <div class="col-md-3">
+									<div class="dropzone mb-2">
+										<div class="preview_img" id="preview">
+												
+										</div>
+									 </div>
+									 <div class="custom-file mb-2">
+											<input type="file" class="custom-file-input" name="file" name="avater" />
+											<label class="custom-file-label" for="customFile">Choose file</label>
+									 </div>
+									</div> -->
+									<div class="col-md-12">
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label for="fname">First name</label>
+												<input type="text" class="form-control" id="fname" name="fname" placeholder="First name" value="<%= user.fname %>" required>
+											</div>
+											<div class="form-group col-md-4">
+												<label for="mname">Middle name</label>
+												<input type="text" class="form-control" id="mname" name="mname" placeholder="Middle name" value="<%= user.mname %> ">
+											</div>
+											<div class="form-group col-md-4">
+												<label for="lname">Last name</label>
+												<input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" aria-describedby="inputGroupPrepend2" value="<%= user.lname %> " required>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="email">Email</label>
+												<div class="input-group">
+													<div class="input-group-prepend">
+													<span class="input-group-text" id="username">@</span>
+													</div>
+													<input type="email" class="form-control" id="username" name="username" placeholder="Username" value="<%= user.username %> " aria-describedby="inputGroupPrepend2" required>
+												</div>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="role">Role</label>
+												<select name="role" id="role" class="form-control">
+													<option value='admin' <%= (user.role === "admin") ? 'selected' : '' %>>Admin</option>
+													<option value='accountent' <%= (user.role === "accountent") ? 'selected' : '' %>>Accountent</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label for="pho">Phone Number:</label>
+												<input type="text" class="form-control" name="phone" id="pho" value="<%= user.phone %> " placeholder="Phone Number">
+											</div>
+											<div class="form-group col-md-8">
+												<label for="address">Address:</label>
+												<input type="text" class="form-control" name="address" value="<%= user.address %> " id="address" placeholder="Address">
+											</div>
+										</div>
+									</div>
+								</div>
+                                <input type="hidden" name="user_id" value="<%= user.id %>">
+								<button class="btn btn-primary float-right" id="btn_submit" type="submit">
+									<span id="spinner" class="spinner-border spinner-border-sm mr-3 d-none" role="status" aria-hidden="true"></span>
+									Save changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+<% include ../../partials/footer %>

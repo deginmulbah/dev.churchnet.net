@@ -1,0 +1,168 @@
+<!-- **********  main-panel  ********** -->
+<style>
+  div.preview_img > img {
+    width: 100px;
+  }
+</style>
+<% include ../../partials/header %>
+<div class="wrapper">
+  <% include ../../partials/sidebar %>
+  <div class="main-panel">
+    <% if(successFlashMessage) {%>
+    <div class="alert alert-success alert-dismissible fade show alert-icon" role="alert">
+      <i class="fa fa-check-circle"></i><%= successFlashMessage %>
+      <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <%}%> 
+    <% if(errorFlashMessage) {%>
+    <div class="alert alert-danger alert-dismissible fade show alert-icon" role="alert">
+      <i class="fa fa-warning"></i><%= errorFlashMessage %>
+      <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <%}%>
+    <div class="row">
+       <div class="col-md-3">
+        <div id="upload_card" class="card">
+					<div class="card-title">
+						<h4>Upload Logo</h4>
+					</div>
+				  <div class="card-body">
+          <div class="mb-3">
+             <img id="output" width="100%" src="/uploads/logo/<%=(data) ? data.logo : '' %>"/>
+          </div>
+          <form id="logo-upload" action="/admin/general_setup/uoload_logo/logo" enctype="multipart/form-data" method="POST">
+            <div class="custom-file">
+						  <input type="file" class="custom-file-input" name="logo" id="customFile"  onchange="preview_img(event)">
+						  <label class="custom-file-label" for="customFile">Choose file</label>
+					 </div>
+           <button id="upload_btn" class="btn btn-primary btn-block mt-2" type="submit">
+             <span id="upload_spinner" class="spinner-grow spinner-grow-sm d-none"  role="status" aria-hidden="true"></span>
+            Upload Logo
+          </button>
+          </form>
+			   </div>
+				</div>
+       </div>
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-title">
+            <div class="card-title-left">
+              <h4 class="card-title-text">Church Information</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <form id="church_setup" >
+              <div class="form-row">
+                  <div class="form-group col-md-6 ">
+                    <label for="churchname">Church Name: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control requireField" id="churchname" value="<%=(data) ? data.name : '' %>" name="churchname" placeholder="church name" required />
+                  </div>
+                  <div class="from-group col-md-6 ">
+                    <label for="location">Address: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control requireField" id="address" name="address" placeholder="New Matadi Estates Sinkor" value="<%=(data) ? data.address : '' %>" required  />
+                  </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label for="email">Email <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control requireField" id="email" name="email" value="<%=(data) ? data.contact.email : '' %>" placeholder="email" aria-describedby="inputGroupPrepend2"required/>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="phone_with_dd">Phone no# 1 <span class="text-danger">*</span></label>
+                  <input type="text" class="phone_with_ddd form-control requireField" id="pho1" name="pho1" value="<%=(data) ? data.contact.phone1 : '' %>" maxlength="10" placeholder="(00) 0000-0000"/>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="phone_with_ddd">Phone no# 2</label>
+                  <input type="text" class="phone_with_ddd form-control requireField" id="pho2" name="pho2" value="<%=(data) ? data.contact.phone2 : '' %>" maxlength="10" placeholder="(00) 0000-0000" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label for="country">Country <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control requireField" id="country" name="country" value="<%=(data) ? data.country : '' %>" placeholder="country" required/>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="county">State <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control requireField" id="state" name="state" value="<%=(data) ? data.states : '' %>" placeholder="State" required/>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="city">City <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control requireField" id="city" name="city" value="<%=(data) ? data.city : '' %>" placeholder="City" required/>
+                </div>
+              </div>
+              <div class="form-row mb-3">
+                <div class="col-md-6">
+                  <label for="year_est">Year Establish</label>
+                  <input type="text" name="year_est" id="year_est" value="<%=(data) ? moment(data.year_est).format('l') : '' %>" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                  <label for="curr_year">Current Year</label>
+                  <input type="text" name="curr_year" id="curr_year"  value="<%=(data) ? moment(data.current_year).format('l') : '' %>" class="form-control"/>
+                </div>
+              </div>
+              <div>
+                <h4 class="form-text mb-0 mt-5">Sunday Service</h4>
+              </div>
+              <div class="form-row mb-3">
+                <div class="col-md-6">
+                  <label for="serv_start">Starts <span class="text-danger">*</span></label>
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="serv_start" name="serv_start" type="text" value="<%=(data) ? data.service.start : '' %>" class="form-control input-small" />
+                    <span class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="serv_end">End <span class="text-danger">*</span></label>
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="serv_end" name="serv_end" type="text" value="<%=(data) ? data.service.end : '' %>" class="form-control input-small" />
+                    <span class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="editor">
+                <h4 class="form-text mb-0 mt-5">Brief History</h4>
+                <textarea id="editor-demo1" name="history"><%=(data) ? data.about : '' %></textarea>
+              </div>
+              <h4 class="form-text mb-2 mt-4">Bank Account</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="bankname">Bank:</label>
+                  <input type="text" class="form-control" id="bankname" name="bankname" value="<%=(data) ? data.primary_account.bank_name : '' %>" placeholder="Bank name"/>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="accountno">Account No#:</label>
+                  <input type="number" class="form-control" id="accountno" name="accountno" value="<%=(data) ? data.primary_account.acctNo : '' %>" placeholder="Account No#"/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="bankname2">Bank:</label>
+                  <input type="text" class="form-control" id="bankname2" name="bankname2" value="<%=(data) ? data.secondary_account.bank_name : '' %>" placeholder="Bank name"/>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="accountno2">Account No#:</label>
+                  <input type="number" class="form-control" id="accountno2" name="accountno2" value="<%=(data) ? data.secondary_account.acctNo : '' %>" placeholder="Account No#"/>
+                </div>
+              </div>
+              <input type="hidden" id="setupId" name="id" value="<%= (data) ? data._id : '' %>" />
+              <button id="submitBtn" class="btn btn-primary float-right" type="submit">
+                 Add Setup
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../../partials/footer %>
+<!-- summernote -->
+<script src="/js/simplemde/simplemde.min.js"></script>
+<script src="/js/simplemde/simplemde.js"></script>
+<script src="/js/jquery-validation/jquery.validate.min.js"></script>
+<script src="/js/jquery-validation/additional-methods.min.js"></script>
+<script type="text/javascript" src="/js/view_script/general_setup.js"></script>

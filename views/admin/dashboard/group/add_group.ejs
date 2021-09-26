@@ -1,0 +1,97 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+<style>
+    .CodeMirror{
+        min-height: 100px!important;
+    }
+</style>
+<div class="main-panel">
+	<div class="panel-hedding">
+            <div class="mb-4">
+                <a href="/admin/group/list"><i class="fa fa-arrow-left mr-2"></i>Groups</a>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1>Add Groups</h1>
+                </div>
+            </div>
+        </div> 
+		<div class="tab tab-outline">
+			<ul class="nav" id="myTab-02" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="home-tab-02" data-toggle="tab" href="#home-02" role="tab" aria-controls="home" aria-selected="true">Add</a>
+				</li>
+		   </ul>
+		   <div class="tab-content" id="myTabContent-02">
+			 <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02">
+				<div class="card">
+					<div class="card-body">
+					 <form id="group">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="groupname" class="mb-3">Name<span class="text-danger">*</span></label>
+									<input type="text" class="form-control require" id="groupname" name="groupname">
+									<span class="error"></span>
+								</div>
+								<!-- <div class="form-group">
+									<label for="groupleader">Choose Leader(s)<span class="text-danger">*</span></label>
+									<select class="form-control require" id="group_leader" multiple="multiple" name="groupleaders"></select>
+									<span class="error"></span>
+								</div> -->
+								<div class="form-row">
+									<div class="form-group col-12" name="mee">
+										<label for="meetingday">Meeting Day</label>
+										<select class="form-control" id="meetingday" name="meetingdays" multiple="multiple"> 
+											<option value="monday">Monday</option>
+											<option value="tuesday">Tuesday</option>
+											<option value="wednesday">Wednesday</option>
+											<option value="thursday">Thursday</option>
+											<option value="friday">Friday</option>
+											<option value="saturday">Saturday</option>
+											<option value="sunday">Sunday</option>
+										</select>
+									</div>
+								</div>
+						       <div class="form-row">
+									<div class="form-group col-12">
+										<label for="meetingtime">Time</label>
+										<input type="text" class="form-control" name="meetingtime" id="meetingtime">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="groupdesc">Description</label>
+									<textarea id="groupdesc" name="groupdesc" class="form-control" cols="3" rows="3"></textarea>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</div>
+				  </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<% include ../../partials/footer %>
+<!-- data picker -->
+<script type="text/javascript" src="/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- jquery validation -->
+<script type="text/javascript" src="/js/jquery-validation/jquery.validate.min.js"></script>
+<!-- wysiwyg editor -->
+<!-- <script src="/js/simplemde/simplemde.min.js"></script>
+<script src="/js/simplemde/simplemde.js"></script> -->
+<!-- select2 -->
+<script src="/js/select2/select2.min.js"></script>
+<!-- sweetalert -->
+<script src="/js/sweetalert2/sweetalert2.min.js"></script>
+<!-- custom -->
+<script type="text/javascript" src="/js/view_script/add_group.js"></script>

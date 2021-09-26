@@ -1,0 +1,82 @@
+<% include ../../partials/header %>
+<style>
+	.card-title-text i{ 
+		color:#1c4ce8;
+		margin-right: 16px;
+		font-size: 20px;
+	}
+</style>
+<div class="wrapper">
+		<% include ../../partials/sidebar %>
+		<div class="main-panel">
+	<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text"><i class="feather icon-user-plus"></i><%= title %></h4>
+						</div>
+					</div>
+				    <div class="card-body">
+					   <form id="adduser" enctype="multipart/form-data">
+							<div class="row">
+									<div class="col-md-12">
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label for="fname">First name <span class="text-danger">*</span></label>
+												<input type="text" class="form-control require" id="fname" name="fname" placeholder="First name">
+											<sapn class="error"></sapn>
+											</div>
+											<div class="form-group col-md-4">
+												<label for="mname">Middle name</label>
+												<input type="text" class="form-control require" id="mname" name="mname" placeholder="Middle name">
+											</div>
+											<div class="form-group col-md-4">
+												<label for="lname">Last name<span class="text-danger">*</span></label>
+												<input type="text" class="form-control require" id="lname" name="lname" placeholder="Last name" aria-describedby="inputGroupPrepend2">
+											<sapn class="error"></sapn>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="email">Email <span class="text-danger">*</span></label>
+												<input type="email" class="form-control require" id="username" name="username" placeholder="Email" aria-describedby="inputGroupPrepend2" >
+												<sapn class="error"></sapn>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="role">Role <span class="text-danger">*</span></label>
+												<select name="role" id="role" class="form-control require">
+													<option value="user">~select role~</option>
+													<option value='admin'>Admin</option>
+													<option value='accountent'>Accountent</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label for="pho">Phone Number <span class="text-danger">*</span></label>
+												<input type="text" class="form-control require" name="pho" id="pho" placeholder="Phone Number">
+												<span class="error"></span>
+											</div>
+											<div class="form-group col-md-8">
+												<label for="address">Address:</label>
+												<input type="text" class="form-control" name="address" id="address" placeholder="Address">
+												<span class="error"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<button class="btn btn-primary float-right" id="btn_submit" type="submit">
+									<span id="spinner" class="spinner-border spinner-border-sm mr-3 d-none" role="status" aria-hidden="true"></span>
+									Add User</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+<% include ../../partials/footer %>
+<script type="text/javascript" src="/js/view_script/add_user_accout.js"></script>

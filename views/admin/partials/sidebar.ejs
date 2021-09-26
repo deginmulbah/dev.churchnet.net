@@ -1,0 +1,250 @@
+<div class="sidebar-panel nicescrollbar sidebar-panel-light">
+  <ul class="sidebar-menu mt-5">
+    <li <% if (pageName === 'index') { %>class="active" <% }%>>
+      <a href="/admin/index"> <i class="la la-home"></i> <span>Dashboard</span> </a>
+    </li>
+    <li 
+      <% if (pageName === 'member') { %> class="active" <% }%> 
+      <% if (pageName === 'searchmember') { %> class="active" <% }%> 
+       >
+      <a href="#">
+        <i class="la la-user"></i> <span>Individuals</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li <% if (pageName === 'searchmember') { %> class="active" <% }%>>
+          <a href="/admin/member/search">
+            <i class="la la-search"></i>
+            <span>Search</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/member/list"
+            ><i class="la la-list-ul"></i> <span>List</span>
+          </a>
+        </li>
+        <li <% if (pageName === 'member') { %>class="active" <% }%>>
+          <a href="/admin/member/add"><i class="la la-user-plus"></i>
+            <span>Add</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li <% if (pageName === 'dept_index') { %>class="active" <% }%>
+        <% if (pageName === 'group_member') { %>class="active" <% }%>
+      >
+      <a href="#">
+        <i class="la la-users"></i> <span>Group</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li <% if (pageName === 'dept_index') { %>class="active" <% }%>>
+          <a href="/admin/group/add"
+            ><i class="la la-users"></i> <span>Add</span>
+          </a>
+        </li>
+        <li <% if (pageName === 'group_member') { %>class="active" <% }%>>
+          <a href="/admin/group/list">
+            <i class="la la-list-ul"></i>
+            <span>Group List</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <!-- givings -->
+    <li>
+      <a href="#">
+        <i class="la la-money"></i><span>Fundraising</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="/admin/fundraising/category">
+            <i class="la la-angle-double-right"></i><span>Fundraising Campaign</span>
+          </a>
+        </li>
+         <li>
+          <a href="/admin/fundraising/add">
+            <i class="la la-angle-double-right"></i>
+            <span>Add Fund</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/fundraising/bulk_giving">
+            <i class="la la-angle-double-right"></i>
+            <span>Bulk Input</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="la la-calendar-o"></i> <span>Church Activities</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="#">
+            <i class="la la-angle-double-right"></i><span>Church calendar</span>
+          </a>
+        </li>
+         <li>
+          <a href="#">
+            <i class="la la-angle-double-right"></i><span>Activities Remainer</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="la la-angle-double-right"></i><span>Upcoming events</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="la la-envelope"></i> <span>Communication</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="/admin/communication/sendsms"
+            ><i class="la la-angle-double-right"></i> <span> Send SMS </span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="la la-bell-o"></i> <span>Notice Board</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="icon-feather-font.html"
+            ><i class="la la-angle-double-right"></i>
+            <span> Birhtdate Reminder </span>
+          </a>
+        </li>
+        <li>
+          <a href="icon-flag.html"
+            ><i class="la la-angle-double-right"></i>
+            <span> Prayer Request </span>
+          </a>
+        </li>
+        <li>
+          <a href="icon-font-awesome.html"
+            ><i class="la la-angle-double-right"></i> <span> Bookings </span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="la la-bar-chart"></i> <span>Report</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="portlet-advanced.html"
+            ><i class="la la-angle-double-right"></i>
+            <span> Daily Report </span>
+          </a>
+        </li>
+        <li>
+          <a href="portlet-base.html"
+            ><i class="la la-angle-double-right"></i>
+            <span> Monthly Report </span>
+          </a>
+        </li>
+        <li>
+          <a href="portlet-dragula.html"
+            ><i class="la la-angle-double-right"></i>
+            <span> Yearly Report </span>
+          </a>
+        </li>
+        <li>
+          <a href="portlet-advanced.html"
+            ><i class="la la-angle-double-right"></i> <span> User Log </span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="la la-cogs"></i> <span>System Setting</span
+        ><i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li <% if (pageName === 'general_setup') { %>class="active" <% }%>>
+          <a href="/admin/general_setup"><i class="la la-angle-double-right"></i>
+            <span> General Setup </span>
+          </a>
+        </li>
+        <li>
+          <a href="portlet-dragula.html"
+            ><i class="la la-angle-double-right"></i>
+            <span>Create User Role </span>
+          </a>
+        </li>
+        <li <% if (pageName === 'create_user_account') { %>class="active" <% }%>>
+          <a href="/admin/user"
+            ><i class="la la-angle-double-right"></i> <span>Create User </span>
+          </a>
+        </li>
+        <li <% if (pageName === 'all_user') { %>class="active" <% }%>>
+          <a href="/admin/user/view_users">
+            <i class="la la-angle-double-right"></i><span>Users Directory </span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="la la-money"></i> <span>Finance</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="chart-amcharts.html"
+            ><i class="la la-angle-double-right"></i>Revenue</a
+          >
+        </li>
+        <li>
+          <a href="chart-amcharts-02.html"
+            ><i class="la la-angle-double-right"></i>Income</a
+          >
+        </li>
+        <li>
+          <a href="chart-amcharts-maps.html"
+            ><i class="la la-angle-double-right"></i>Expanse</a
+          >
+        </li>
+        <li>
+          <a href="chart-apexcharts.html"
+            ><i class="la-angle-double-rights"></i>Plages</a
+          >
+        </li>
+        <li>
+          <a href="chart-chartjs.html"
+            ><i class="la la-angle-double-right"></i>Tax</a
+          >
+        </li>
+        <li>
+          <a href="chart-morris.html"
+            ><i class="la la-angle-double-right"></i>Morris chart
+          </a>
+        </li>
+        <li>
+          <a href="chart-peity.html"
+            ><i class="la la-angle-double-right"></i>Peity chart
+          </a>
+        </li>
+        <li>
+          <a href="chart-sparkline.html"
+            ><i class="la la-angle-double-right"></i>Sparkline chart
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

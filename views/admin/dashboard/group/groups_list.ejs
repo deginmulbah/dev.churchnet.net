@@ -1,0 +1,58 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+<style>
+    .CodeMirror{
+        min-height: 100px!important;
+    }
+</style>
+<div class="main-panel">
+		<div class="panel-hedding">
+            <div class="mb-4">
+                <a href="/admin/group/add"><i class="fa fa-arrow-left mr-2"></i>Add Group</a>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1>Groups</h1>
+                </div>
+            </div>
+        </div>
+		<div class="tab tab-outline">
+			<ul class="nav" id="myTab-02" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="home-tab-02" data-toggle="tab" href="#home-02" role="tab" aria-controls="home" aria-selected="true">List</a>
+				</li>
+		   </ul>
+		   <div class="tab-content" id="myTabContent-02">
+			 <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02">
+				<div class="card">
+					<div class="card-body">
+						<div class="search_table">
+							<input type="text" class="form-control" placeholder="search group" id="filter_table">
+							<i class="fa fa-search"></i>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-centered table-hover mb-0 table-striped" id="group_list">
+								<thead>
+									<tr>
+										<th scope="col">Name </th>
+										<th scope="col">Date Create</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<% include ../../partials/footer %>
+<!-- data table -->
+<script type="text/javascript" src="/js/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="/js/datatables/dataTables.buttons.min.js"></script>
+<!-- moment -->
+<script type="text/javascript" src="/js/moment.min.js"></script>
+<!-- custom -->
+<script type="text/javascript" src="/js/view_script/list_group.js"></script>

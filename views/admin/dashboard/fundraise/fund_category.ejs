@@ -1,0 +1,113 @@
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+
+<div class="main-panel">
+	<div class="panel-hedding">
+            <div class="mb-4">
+                <a href="/admin/fundraising/add"><i class="fa fa-arrow-left mr-2"></i>Add Funds</a>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1>Fundraising Campaign</h1>
+                </div>
+            </div>
+    </div> 
+	 <hr class="mb-4" />
+	<div class="row">
+	   <div class="col-md-6">
+	   	<% if (successFlashMessage) { -%>
+		   	<div class="alert alert-success alert-dismissible fade show alert-icon " role="alert">
+			 <i class="fa fa-warning"></i><%= successFlashMessage %>
+			  <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+	   	<% } -%>
+		<div class="card">
+			<div class="card-body">
+				<form action="/admin/fundraising/create_campaign" method="POST">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="title" class="mb-3">Campaign Title</label>
+								<input type="text" class="form-control <%= (errorFlashMessage ==="title") ? "is-invalid" : "" %>" id="title" name="title">
+								<span class="error"><%= (errorFlashMessage ==="title") ? "This field is required" : "" %></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="amonunt">Target Amount</label>
+								<input type="number" class="form-control <%= (errorFlashMessage ==="amount") ? "is-invalid" : "" %>" name="amount" id="amonunt">
+								<span class="error">
+									<%= (errorFlashMessage ==="amount") ? "This field is required" : "" %>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="start-date">Date Start</label>
+								<input type="text" class="form-control" name="startdate" id="start-date">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="end-date">Date End</label>
+								<input type="text" class="form-control date-picker " name="enddate" id="end-date">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="desc">Campaign Description</label>
+								<textarea id="desc" name="desc" class="form-control" cols="3" rows="3"></textarea>
+							</div>
+						</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary pull-right">Save</button>
+					</div>
+				  </form>
+				</div>
+			</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">All Campaigns</h4>
+						<div class="table-responsive">
+					   <table class="table">
+						  <thead class="thead-light mb-0">
+						    <tr>
+						      <th scope="col">Campaign Title</th>
+						      <th scope="col">Target</th>
+						      <th scope="col">Starts</th>
+						      <th scope="col">Ends</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<% for (var i = 0; i < campaign.length; i++) { -%>
+							  	<tr>
+							      <td>
+							      	<span data-toggle="popover" title="Description" data-content="<%= campaign[i].desc %>">
+								      	<%= campaign[i].title %>
+							      	</span>
+							      </td>
+							      <td><%= campaign[i].amount %></td>
+							      <td><%= moment(campaign[i].start).format('l') %></td>
+							      <td><%= moment(campaign[i].end).format('l') %></td>
+							    </tr>
+						  	<% } -%>
+						  </tbody>
+						</table>
+				  </div>
+				</div>
+			</div>
+			</div>
+		 </div> <!-- row -->
+	</div>
+</div>
+<% include ../../partials/footer %>
