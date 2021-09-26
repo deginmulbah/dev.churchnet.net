@@ -1,9 +1,7 @@
 const { validationResult } = require('express-validator');
 const Church_setup = require('../../model/admin/generalSetup.model');
-const Media = require('../../model/admin/media.model');
 const moment = require('moment');
-const cloudinary = require('../../config/media_upload')
-//================ Get set page =================
+// Get set page
 exports.general_setup = async (req, res) => {
      try {
           const doc = await Church_setup.findOne({ is_inserted: true });
@@ -16,37 +14,24 @@ exports.general_setup = async (req, res) => {
                moment: moment,
           })
      } catch (error) {
-          console.log(error)
+          res.json({error:"true",success:"false",msg:error})
      };
 }
-//================ upload logo =================
+// upload logo
 exports.upload_logo = async (req, res) => {
-     const file = req.files.logo;
-     if (file.mimetype != 'image/png' && file.mimetype != 'image/jpg' && file.mimetype != 'image/jpeg') {
-          return res.json({ msg: "error", msgtxt: `Invaid file format ${file.mimetype}!! Please add jpg/png/jpeg` });
+     try{ 
+         const logo_name = req.file.filename; // filename 
+         const uploaded = await Church_setup.updateOne({is_inserted:true},{logo:logo_name});
+         if(uploaded){ 
+            req.flash("success","Logo Uploaded successfully");
+            res.redirect("/admin/general_setup")
+         }
+     } catch (error) { 
+          console.log(error);
+          res.json({error:"true",success:"false", msg:error});
      }
-     cloudinary.uploader.upload(file.tempFilePath, {
-          widht: 268, height: 65, crop: "scale"
-     }).then((result) => {
-          Media.create({
-               image_name: file.name,
-               cloudinary_id: result.asset_id,
-               public_id: result.public_id,
-               image_url: result.url,
-               secure_url: result.secure_url,
-          }).then((doc) => {
-               if (!doc) {
-                    return res.json({ msg: "error", msgtxt: err.message })
-               }
-               return res.json({ msg: "success", msgtxt: "Logo Added Successfully" })
-          }).catch((err) => {
-               return res.statu(500).json({ msg: "error", msgtxt: err.message })
-          })
-     }).catch((error) => {
-          return res.statu(500).json({ msg: "error", msgtxt: error.message })
-     })
 }
-//================ Add setup info =================
+//Add setup info
 exports.addSetup = async (req, res) => {
      const { churchname, address, email, pho1, pho2, country,
           state, city, year_est, curr_year, serv_start, serv_end, history, accountno, bankname, accountno2, bankname2 } = req.body;
@@ -141,4 +126,4 @@ exports.update_setup = async (req, res) => {
      } catch (error) {
           console.log(error)
      }
-}
+};

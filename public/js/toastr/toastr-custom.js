@@ -1,18 +1,18 @@
-
 toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": true,
-    "progressBar": true,
-    "rtl": false,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": false,
-    "showDuration": 300,
-    "hideDuration": 1000,
-    "timeOut": 5000,
-    "extendedTimeOut": 1000,
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "rtl": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": 200,
+  "hideDuration": 200,
+  "timeOut": 5000,
+  "extendedTimeOut": 1000,
+  "showEasing": "swing",
+  "hideEasing": "swing",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}

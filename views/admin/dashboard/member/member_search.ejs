@@ -26,7 +26,7 @@
                 <div class="tab-pane fade show active" id="home-02" role="tabpanel" aria-labelledby="home-tab-02">
                     <form id="search_member" class="mb-4">
                         <div class="search-bar">
-                            <input class="form-control border-0" type="search" id="search" name="search" placeholder="type name ,email ,phone number and address..." aria-label="Search">
+                            <input class="form-control border-0" type="text" id="search" name="search" placeholder="type name ,email ,phone number and address..." aria-label="Search">
                             <span class="la la-search"></span>
                             <div class="spinner spinner-05 d-none"></div>
                         </div> 
@@ -51,7 +51,6 @@
                                             <th scope="col">Gender</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Phone number</th>
-                                            <th scope="col">Address</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -67,6 +66,65 @@
         <!-- tab  end-->
     </div>
 </div>
+<!-- giving modal -->
+<div class="modal fade" id="addGiving" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered model-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Giving Entry</h5>
+          <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-5">
+        <form id="member_giving" action="/admin/member/add_giving">
+          <!-- member id -->
+          <input type="hidden" name="id" id="member_id"/>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="category">Category<span class="text-danger ml-2" style="font-size:10px; font-style:italic;">require</span></label>
+              <select class="form-control" id="category" name="category">
+                <option value="building">Building</option>
+                <option value="giving to the poor">giving to the poor</option>
+              </select>
+            </div>
+             <div class="form-group col-md-6">
+                <label for="date">Date <span class="text-danger ml-2" style="font-size:10px; font-style:italic;">require</span></label>
+                 <div class="icon-input">
+                    <i class="fa fa-calendar"></i>
+                    <input type="text" class="form-control date-picker" id="date-pickr" name="date" id="date"/>
+                    <span class="error"></span>
+                 </div>
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="amount">Amount<span class="text-danger ml-2" style="font-size:10px; font-style:italic;">require</span></label>
+              <div class="icon-input">
+                  <i class="fa fa-dollar"></i>
+                  <input type="number" class="form-control" name="amount" id="amount"/>
+                  <span class="error"></span>
+              </div>
+            </div>
+             <div class="form-group col-md-6">
+               <label for="checkno">Check Number <span class="text-light" style="font-size:10px; font-style:italic;">optional</span></label>
+                <input type="text" class="form-control" name="checkno" id="checkno"/>
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="note">Note<span class="text-light ml-2" style="font-size:10px; font-style:italic;">optional</span></label>
+                <textarea class="form-control" id="note" name="note"></textarea>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary pull-right" id="saveGiving">Save</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div> 
 <% include ../../partials/footer %>
 <!-- data table -->
 <script type="text/javascript" src="/js/datatables/datatables.min.js"></script>
@@ -77,5 +135,12 @@
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <!-- datapicker -->
 <script type="text/javascript" src="/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- toastr -->
+<script type="text/javascript" src="/js/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="/js/toastr/toastr-custom.js"></script>
+<!-- flatpickr -->
+<script src="/js/flatpickr/flatpickr.js"></script>
 <!-- custom  -->
+<script type="text/javascript" src="/js/view_script/custom_validation.js"></script>
 <script type="text/javascript" src="/js/view_script/member_details.js"></script>
+<script type="text/javascript" src="/js/view_script/modals.js"></script>

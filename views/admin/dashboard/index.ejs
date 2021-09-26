@@ -5,75 +5,57 @@
 <div class="main-panel">
 	<div class="panel-hedding">
 		<div class="row">
-			<div class="col-md-6 col-xl-6 col-xxl-3">
+			<div class="col-lg-6 col-xxl-4">
 				<div class="card">
-					<div class="card-body">
-						<div class="d-flex align-items-end">
-								<div class="mr-2">
-									<h3 class="mb-2">50</h3>
-									<span>Registered Members</span>
-									<p class="mb-0 mt-3"><i class="feather icon-trending-up pr-2 text-primary"></i> 5% higher than last week</p>
-								</div>
-								<button type="button" class="btn btn-lg btn-overlay-primary btn-icon ml-auto"> <i class="feather icon-user-check"></i> </button>
-							</div>
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">Member Statistic</h4>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-xl-6 col-xxl-3">
-				<div class="card">
 					<div class="card-body">
-						<div class="d-flex align-items-end">
-								<div class="mr-2">
-									<h3 class="mb-2">10</h3>
-									<span>Baptized</span>
-									<p class="mb-0 mt-3"><i class="feather icon-trending-up pr-2 text-success"></i>Total Baptized Member</p>
+						<div class="row">
+							<div class="col">
+								<div class="bg-light p-4 border-radius mb-4">
+									<h3><%= memberStats.members %></h3>
+									<span>Registered Member</span>
 								</div>
-								<button type="button" class="btn btn-lg btn-overlay-success btn-icon ml-auto"> <i class="fa fa-tint"></i></button>
 							</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-xl-6 col-xxl-3">
-				<div class="card">
-					<div class="card-body">
-						<div class="d-flex align-items-end">
-								<div class="mr-2">
-									<h3 class="mb-2">30</h3>
-									<span>Male</span>
-									<p class="mb-0 mt-3"><i class="feather icon-trending-up pr-2 text-info"></i>Total Male </p>
+							<div class="col"> 
+								<div class="bg-light p-4 border-radius mb-4">
+									<h3><%= memberStats.male %></h3>
+									<span>Total Male</span>
 								</div>
-								<button type="button" class="btn btn-lg btn-overlay-info btn-icon ml-auto"> <i class="fa fa-male"></i> </button>
+							</div>
+							<div class="col">
+								<div class="bg-light p-4 border-radius mb-4">
+									<h3><%= memberStats.female %></h3>
+									<span>Total Female</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-6 col-xl-6 col-xxl-3">
 				<div class="card">
 					<div class="card-body">
 						<div class="d-flex align-items-end">
 								<div class="mr-2">
-									<h3 class="mb-2">20</h3>
-									<span>Female</span>
-									<p class="mb-0 mt-3"><i class="feather icon-trending-up pr-2 text-danger"></i>Total Female</p>
-								</div>
-								<button type="button" class="btn btn-lg btn-overlay-info btn-icon ml-auto"> <i class="fa fa-female"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-5 col-xxl-3">
-				<div class="card">
-					<div class="card-body">
-						<div class="d-flex align-items-end">
-								<div class="mr-2">
-									<h3 class="mb-2">4</h3>
-									<span>Departments</span>
-									<p class="mb-0 mt-3"><i class="feather icon-trending-up pr-2 text-danger"></i>Total department</p>
+									<h3 class="mb-2"><%= group %></h3>
+									<p class="mb-0 mt-3">Total Departments</p>
 								</div>
 								<button type="button" class="btn btn-lg btn-overlay-info btn-icon ml-auto"> <i class="fa fa-sitemap"></i></button>
 						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6 col-xxl-3">
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">Monthly Visitors</h4>
+						</div>
+					</div>
+					<div class="card-body">
+						<div id="monthly-visiitor"></div>
 					</div>
 				</div>
 			</div>
@@ -161,8 +143,11 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 </div>
 </div>
 <% include ../partials/footer %>
+<script src="/js/moment.min.js"></script>
+<!-- apexcharts -->
+<script src="/js/apexcharts/apexcharts.min.js"></script>
+<script src="/js/view_script/dashboard-chart.js"></script>

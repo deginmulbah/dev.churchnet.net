@@ -13,84 +13,88 @@ var menber = new Schema({
     type: String,
     required: true
   },
-  username:{ 
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    require: true
-  },
-  contact:{ 
-    email: {
-      type:String
-    },
-    phone1:{
-      type: String,
-      required: true
-    },
-    phone2:{
-      type:String,
-      required: true
-    },
-    address:{
-      type:String,
-    } 
+  initial: {
+    type: String
   },
   gender: {
     type: String,
     required: true
   },
-  dob: {
-    type: Date,
-    required: true
-  },
-  position: {
-    type:String,
-  },
-  is_active: {
-    type: Boolean
-  },
-  joined_date: {
-    type:Date
-  },
-  pob: {
+  username: {
     type: String,
-},
-occupation: {
+    required: true,
+  },
+  password: {
     type: String,
-    required: true
-},
-nationality: {
-  type: String,
-  required: true
-},
-baptism: {
-  is_baptised:{
+    required: true,
+    unique:true,
+  },
+  groups:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'groups',
+    },
+  ],
+  dates: {
+    dob: {
+      type: Date,
+      required:true
+    },
+    date_bapts: {
+      type: Date
+    },
+    joined_date: {
+      type: Date,
+      required:true
+    },
+  },
+  contact: {
+    primaryemail: {
+      type: String,
+      required:true
+    },
+    secondaryemail:{ 
+      type:String
+    },
+    primarynumber: {
+      type: String,
+      required: true
+    },
+    secondarynumber: {
       type: String,
     },
-    data_bapts:{ 
-      type:Date
+  },
+  address: {
+    city: {
+      type: String
     },
-    place_bapts:{ 
-      type:String 
+    state: {
+      type: String
     },
+    country: {
+      type: String
+    },
+    address: {
+      type: String,
+      required:true
+    }
   },
-  marital_status: {
-    type: String,
-    required: true
+  avater: {
+    type: String
   },
-  spouse_name:{
-    type:String,
-  },
-  date_of_marrage:{ 
-    type:Date
-  },
-  created_at:{
+  family:[{
+    family_id:{
+      type:Schema.Types.ObjectId,
+      ref:"members"
+    },
+    family_rel:{
+      type:String
+    }
+  }],
+  created_at: {
     type: Date,
-    require: true, 
-    default:Date.now 
+    require: true,
+    default: Date.now
   }
 });
-module.exports = mongoose.model('member' , menber)
+module.exports = mongoose.model('member', menber);

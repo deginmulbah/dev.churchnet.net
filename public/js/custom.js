@@ -8,29 +8,22 @@
     05. Sortable
     06. ShowLeft
     07. Chart chartjs 
-    9.  Duallistbox
-    11. Wizard
-    12. Map Vactor
-    13. Morris
-    14. Nestable
-    15. Peity
-    16. Rangeslider
-    17. Sparkline
-    18. Summernote
-    19. TouchSpin
-    20. Google Map
-    21. Calendar
-    22. NProgress
+    8.  Wizard
+    9.  Map Vactor
+    10. Morris
+    11. Nestable
+    12. Peity
+    13. Rangeslider
+    14. Summernote
+    15. TouchSpin
+    16. Google Map
+    17. Calendar
+    18. NProgres
+    19. flatpickr
 */
-
-
 (function ($) {
   'use strict'; // Start of use strict
-
   $(document).ready(function () {
-    // $( function () {
-    //   $( '[data-toggle="tooltip"]' ).tooltip()
-    // } );
     /* ------------------------------------------------------------------------
      * SidebarMenu
      * ------------------------------------------------------------------------ */
@@ -97,7 +90,9 @@
      * popover tooltip tooltip
      * ------------------------------------------------------------------------ */
     $(function () {
-      $('[data-toggle="popover"]').popover()
+      $('[data-toggle="popover"]').popover({
+        trigger: 'hover'
+      })
     });
 
     $('.popover-dismiss').popover({
@@ -105,7 +100,9 @@
     });
 
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-tips="tooltip"]').tooltip({
+         trigger: 'hover'
+      })
     });
 
     /* ------------------------------------------------------------------------
@@ -501,14 +498,18 @@
     }
     
     /* ------------------------------------------------------------------------
-     * datepicker
+     * flatpicker
      * ------------------------------------------------------------------------ */
-    $(".date-picker").flatpickr({
-      position:'above',
+    flatpickr(".date-picker" ,{
+      position:'below',
       altInput: true,
       altFormat: "F j, Y",
-      dateFormat: "Y-m-d",
+      dateFormat: "m-d-y",
       allowInput: true,
+      onChange: function(selectedDates, dateStr, instance){
+      // remove validation error message
+      $(".date-picker").removeClass('is-invalid').next().text(""); 
+    },
     });
     /* ------------------------------------------------------------------------
      * Duallistbox
@@ -832,308 +833,7 @@
       });
     }
 
-    /* ------------------------------------------------------------------------
-     * Sparkline
-     * ------------------------------------------------------------------------ */
-
-    // var _sparkline_line = $( '#sparkline-line' );
-    // if( _sparkline_line.exists() ) {
-    //   _sparkline_line.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //     type: "line", 
-    //     width: "100%", 
-    //     height: "200", 
-    //     lineWidth: 2,
-    //     chartRangeMax: 50, 
-    //     lineColor: "#335eea", 
-    //     fillColor: "rgba(0, 0, 0, 0.1)"
-    //   }); 
-    //   _sparkline_line.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //     type: "line", 
-    //     width: "100%", 
-    //     height: "200", 
-    //     lineWidth: 2,
-    //     chartRangeMax: 40, 
-    //     lineColor: "#335eea", 
-    //     fillColor: "rgba(131, 141, 244, 0.3)", 
-    //     composite: !0
-    //   });       
-    // }
-
-    // var _sparkline_bar = $("#sparkline-bar");
-    // if( _sparkline_bar.exists() ) {
-    //   _sparkline_bar.sparkline([5,6,7,2,0,-4,-2,4,5,6,7,2,0-4,-2,-6,-2,6,7,2,6,7,2], {
-    //       type: 'bar',
-    //       width: "100%",
-    //       height: '200',
-    //       barWidth: 10,
-    //       barColor: '#335eea',
-    //       negBarColor: '#f36c9b',
-    //       barSpacing: 2});   
-    // }
-
-    // var _sparkline_pie = $( "#sparkline-pie" );
-    // if(_sparkline_pie.exists() ) {
-    //    _sparkline_pie.sparkline([1,1,2], {
-    //     type: 'pie',
-    //     width: "100%",
-    //     sliceColors: ['#335eea','#f36c9b','#50d294'],
-    //     height: '200'});
-    // }
-
-
-    // var _sparklinediscrete = $("#sparkline-discrete");
-    // if( _sparklinediscrete.exists() ) {
-    //   _sparklinediscrete.sparkline([4,6,7,7,4,3,2,1,4,4], {
-    //   type: 'discrete',
-    //   width: "280",
-    //   height: '200'});
-    // }
-
-    // var _sparkline_composite = $( "#sparkline-composite" );
-    // if( _sparkline_composite.exists() ) {
-    //    _sparkline_composite.sparkline([3, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12], {
-    //     type: "line", 
-    //     width: "100%", 
-    //     height: "200", 
-    //     lineColor: "#ebeef0", 
-    //     lineWidth: 2, 
-    //     fillColor: "rgba(0,0,0,0.1)", 
-    //     highlightLineColor: "rgba(0,0,0,0.2)", 
-    //     highlightSpotColor: "rgba(0,0,0,0.3)"
-    //   });
-    //    _sparkline_composite.sparkline([3, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12, 7, 10, 12, 7, 4], {
-    //     type: "bar", 
-    //     height: "200", 
-    //     barWidth: "10", 
-    //     barSpacing: "2", 
-    //     composite: !0, 
-    //     barColor: "#335eea"
-    //   });
-    // }
-
-    // var _sparklinebar02=$("#sparkline-bar-02");
-    // if( _sparklinebar02.exists() ){
-    //   _sparklinebar02.sparkline([4, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12, 7, 10, 12, 7, 4], {
-    //       type: 'bar',
-    //       width: "100%",
-    //       height: '200',
-    //       barWidth: 10,
-    //       barColor: '#335eea',
-    //       negBarColor: '#f36c9b',
-    //       barSpacing: 2});   
-    // }
-
-    //  var _sparklinebar03 = $("#sparkline-bar-03");
-    //   if( _sparklinebar03.length ){
-    //     _sparklinebar03.sparkline([4, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12, 7, 10, 12, 7, 4], {
-    //         type: 'bar',
-    //         width: "100%",
-    //         height: '50',
-    //         barWidth: 6,
-    //         barColor: '#335eea',
-    //         negBarColor: '#f36c9b',
-    //         barSpacing: 2});   
-    //   }
-
-    // // var _sparklineline = $("#statistics-sparkline-line");
-    // //   if( _sparklineline.length ){
-    // //     _sparklineline.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    // //       type: "line", 
-    // //       width: "80", 
-    // //       height: "30", 
-    // //       lineWidth: 2,
-    // //       spotRadius: 0,
-    // //       chartRangeMax: 50, 
-    // //       lineColor: "#335eea", 
-    // //       fillColor: "rgba(0, 0, 0, 0)"
-    // //     }); 
-    // //   }
-    //   var _sparklineline02 = $("#statistics-sparkline-line-02");
-    //   if( _sparklineline02.length ){
-    //     _sparklineline02.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //       type: "line", 
-    //       width: "80", 
-    //       height: "30", 
-    //       lineWidth: 2,
-    //        spotRadius: 0,
-    //       chartRangeMax: 50, 
-    //       lineColor: "#335eea", 
-    //       fillColor: "rgba(0, 0, 0, 0)"
-    //     }); 
-    //   }
-    //   var _sparklineline03 = $("#statistics-sparkline-line-03");
-    //   if( _sparklineline03.length ){
-    //     _sparklineline03.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //       type: "line", 
-    //       width: "80", 
-    //       height: "30", 
-    //       lineWidth: 2,
-    //        spotRadius: 0,
-    //       chartRangeMax: 50, 
-    //       lineColor: "#335eea", 
-    //       fillColor: "rgba(0, 0, 0, 0)"
-    //     }); 
-    //   }
-    //   var _sparklineline04 = $("#statistics-sparkline-line-04");
-    //   if( _sparklineline04.length ) {
-    //     _sparklineline04.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //       type: "line", 
-    //       width: "80", 
-    //       height: "30", 
-    //       lineWidth: 2,
-    //        spotRadius: 0,
-    //       chartRangeMax: 50, 
-    //       lineColor: "#335eea", 
-    //       fillColor: "rgba(0, 0, 0, 0)"
-    //     }); 
-    //   }
-    //   var _sparklineline05 = $("#statistics-sparkline-line-05");
-    //   if( _sparklineline05.length ){
-    //     _sparklineline05.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //       type: "line", 
-    //       width: "80", 
-    //       height: "30", 
-    //       lineWidth: 2,
-    //        spotRadius: 0,
-    //       chartRangeMax: 50, 
-    //       lineColor: "#335eea", 
-    //       fillColor: "rgba(0, 0, 0, 0)"
-    //     }); 
-    //   }
-    //   var _sparklineline06 = $("#statistics-sparkline-line-06");
-    //   if( _sparklineline06.length ){
-    //     _sparklineline06.sparkline([35,26,28,22,22,35,40,10,23,23,12,26,28], {
-    //       type: "line", 
-    //       width: "80", 
-    //       height: "30", 
-    //       lineWidth: 2,
-    //        spotRadius: 0,
-    //       chartRangeMax: 50, 
-    //       lineColor: "#335eea", 
-    //       fillColor: "rgba(0, 0, 0, 0)"
-    //     }); 
-    //   }
-    //    var _sparklineline07 = $("#statistics-sparkline-line-07");
-    //     if( _sparklineline07.length ){
-    //       _sparklineline07.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //      var _sparklineline08 = $("#statistics-sparkline-line-08");
-    //     if( _sparklineline08.length ){
-    //       _sparklineline08.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28, 10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "160", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-
-
-    //      var _sparklineline09 = $("#statistics-sparkline-line-09");
-    //     if( _sparklineline09.length ){
-    //       _sparklineline09.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //     var _sparklineline10 = $("#statistics-sparkline-line-10");
-    //     if( _sparklineline10.length){
-    //       _sparklineline10.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#50d294", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //     var _sparklineline11 = $("#statistics-sparkline-line-11");
-    //     if( _sparklineline11.length ) {
-    //       _sparklineline11.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //     var _sparklineline12 = $("#statistics-sparkline-line-12");
-    //     if( _sparklineline12.length ){
-    //       _sparklineline12.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //     var _sparklineline13 = $("#statistics-sparkline-line-13");
-    //     if( _sparklineline13.length ){
-    //       _sparklineline13.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#50d294", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //     var _sparklineline14 = $("#statistics-sparkline-line-14");
-    //     if( _sparklineline14.length ){
-    //       _sparklineline14.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-    //     var _sparklineline15 = $("#statistics-sparkline-line-15");
-    //     if( _sparklineline15.length ){
-    //       _sparklineline15.sparkline([10,16,20,6,26,30,40,10,23,23,60,26,28], {
-    //         type: "line", 
-    //         width: "80", 
-    //         height: "30", 
-    //         lineWidth: 2,
-    //          spotRadius: 0,
-    //         chartRangeMax: 50, 
-    //         lineColor: "#335eea", 
-    //         fillColor: "rgba(0, 0, 0, 0)"
-    //       }); 
-    //     }
-
-
+    
     /* ------------------------------------------------------------------------
      * Summernote
      * ------------------------------------------------------------------------ */

@@ -9,48 +9,21 @@
   <% include ../../partials/sidebar %>
   <div class="main-panel">
     <% if(successFlashMessage) {%>
-    <div
-      class="alert alert-success alert-dismissible fade show alert-icon"
-      role="alert"
-    >
+    <div class="alert alert-success alert-dismissible fade show alert-icon" role="alert">
       <i class="fa fa-check-circle"></i><%= successFlashMessage %>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
+      <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <%}%> 
     <% if(errorFlashMessage) {%>
-    <div
-      class="alert alert-danger alert-dismissible fade show alert-icon"
-      role="alert"
-    >
+    <div class="alert alert-danger alert-dismissible fade show alert-icon" role="alert">
       <i class="fa fa-warning"></i><%= errorFlashMessage %>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
+      <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <%}%>
-    <div class="panel-hedding">
-      <div class="row mb-4">
-        <div class="col-md-6">
-          <h1>Forms basic</h1>
-          <p>
-            Examples and usage guidelines for form control styles, layout
-            options, and custom components for creating a wide variety of forms.
-          </p>
-        </div>
-      </div>
-    </div>
     <div class="row">
        <div class="col-md-3">
         <div id="upload_card" class="card">
@@ -58,15 +31,12 @@
 						<h4>Upload Logo</h4>
 					</div>
 				  <div class="card-body">
-              <div id="loader" class="spinner spinner-06 d-none"></div>
-            <div class="dropzone" id="upload">
-						<div class="dz-message needsclick">
-              <img id="output" width="100%"/>
-						</div>
-					</div>
-          <form id="upload_logo">
+          <div class="mb-3">
+             <img id="output" width="100%" src="/uploads/logo/<%=(data) ? data.logo : '' %>"/>
+          </div>
+          <form id="logo-upload" action="/admin/general_setup/uoload_logo/logo" enctype="multipart/form-data" method="POST">
             <div class="custom-file">
-						  <input type="file" class="custom-file-input" name="logo" id="customFile" onchange="preview_img(event)">
+						  <input type="file" class="custom-file-input" name="logo" id="customFile"  onchange="preview_img(event)">
 						  <label class="custom-file-label" for="customFile">Choose file</label>
 					 </div>
            <button id="upload_btn" class="btn btn-primary btn-block mt-2" type="submit">
@@ -193,4 +163,6 @@
 <!-- summernote -->
 <script src="/js/simplemde/simplemde.min.js"></script>
 <script src="/js/simplemde/simplemde.js"></script>
+<script src="/js/jquery-validation/jquery.validate.min.js"></script>
+<script src="/js/jquery-validation/additional-methods.min.js"></script>
 <script type="text/javascript" src="/js/view_script/general_setup.js"></script>

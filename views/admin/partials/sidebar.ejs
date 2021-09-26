@@ -39,24 +39,44 @@
       </a>
       <ul class="sidebar-submenu">
         <li <% if (pageName === 'dept_index') { %>class="active" <% }%>>
-          <a href="/admin/department/list"
-            ><i class="la la-list"></i> <span>List</span>
+          <a href="/admin/group/add"
+            ><i class="la la-users"></i> <span>Add</span>
           </a>
         </li>
         <li <% if (pageName === 'group_member') { %>class="active" <% }%>>
-          <a href="/admin/department/group_members">
-            <i class="la la-angle-double-right"></i>
-            <span> Group Members </span>
-          </a>
-        </li>
-        <li>
-          <a href="form-colorpicker.html"
-            ><i class="la la-angle-double-right"></i> <span> Talent</span>
+          <a href="/admin/group/list">
+            <i class="la la-list-ul"></i>
+            <span>Group List</span>
           </a>
         </li>
       </ul>
     </li>
-    <!--  -->
+    <!-- givings -->
+    <li>
+      <a href="#">
+        <i class="la la-money"></i><span>Fundraising</span>
+        <i class="la la-angle-right down-arrow"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li>
+          <a href="/admin/fundraising/category">
+            <i class="la la-angle-double-right"></i><span>Fundraising Campaign</span>
+          </a>
+        </li>
+         <li>
+          <a href="/admin/fundraising/add">
+            <i class="la la-angle-double-right"></i>
+            <span>Add Fund</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/fundraising/bulk_giving">
+            <i class="la la-angle-double-right"></i>
+            <span>Bulk Input</span>
+          </a>
+        </li>
+      </ul>
+    </li>
     <li>
       <a href="#">
         <i class="la la-calendar-o"></i> <span>Church Activities</span>

@@ -75,6 +75,9 @@ var generalSetting = new Schema({
       type:Date,
       default: new Date(),
    },
+   logo:{ 
+      type:String,
+   },
    is_inserted: { 
       type:Boolean,
       require: true,

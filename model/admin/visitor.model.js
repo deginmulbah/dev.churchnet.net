@@ -2,14 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 // member schama 
 var visitor = new Schema({
-  firstname: {
-    type: String,
-    required: true
-  },
-  middlename: {
-    type: String,
-  },
-  lastname: {
+  name: {
     type: String,
     required: true
   },
@@ -18,14 +11,26 @@ var visitor = new Schema({
   },
   phone:{
     type: String,
-    required: true
+    required: true,
   },
   address:{
     type:String,
   },
- gender: {
-  type: String,
-  required: true
-},
+  gender: {
+    type: String,
+    required: true
+  },
+  note:{ 
+   type:String,
+  },
+  visit_date:{ 
+    type:Date,
+    required:true
+  },
+  created_at:{ 
+    type:Date,
+    default:Date.now,
+    required:true
+  }
 });
 module.exports = mongoose.model('visitor' , visitor)

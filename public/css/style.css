@@ -2817,18 +2817,28 @@ table.dataTable thead th, table.dataTable thead td {
   border-bottom: none;
   border-top: none;
 }
-table.dataTable tbody td i {
-  color:#000!important;
-  padding:5px
-}
-table.dataTable tbody td i:hover {
+/*table.dataTable tbody td i {
+  color:#335eea!important;
+}*/
+/*table.dataTable tbody td i:hover {
   background-color:#ccc!important;
-}
-table.dataTable tbody td i .la{
-  font-size: 18px;
-}
+}*/
 table.dataTable tbody td{
   font-size: 1.1em;
+}
+table.dataTable tbody tr .action-icon i{
+  font-size: 24px;
+}
+table.dataTable .action-icon{
+  margin-right: .5rem;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+  cursor: pointer;
+  transition-delay: 0s;
+}
+table.dataTable tr:hover .action-icon{
+ opacity: 1;
+ transition-delay: 0s;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
   background: transparent;
@@ -2931,8 +2941,7 @@ table.dataTable tbody td{
 }
 .icon-input .form-control{ 
   width: 100%;
-  padding: 10px;
-  text-align: center;
+  padding-left: 3rem;
 }
 .form-group label {
   color: #868aa8;
@@ -4540,7 +4549,9 @@ Author: Infinitysoftway
 .badge-light {
   background-color: #f0f1f6;
 }
-
+.badge i:hover{ 
+  cursor: pointer;
+ }
 .badge-dark {
   background-color: #161c2d;
 }
@@ -4612,23 +4623,18 @@ Author: Infinitysoftway
 .toast {
   background-color: #335eea;
 }
-
 .toast-success {
   background-color: #50d294;
 }
-
 .toast-error {
   background-color: #ec5552;
 }
-
 .toast-info {
-  background-color: #53cad8;
+  background-color: #335eea;
 }
-
 .toast-warning {
   background-color: #ffea04;
 }
-
 #toast-container > div {
   box-shadow: none;
 }
@@ -5186,18 +5192,18 @@ input:checked + .slider.name:before {
   left: 3px;
   top: 3px;
 }
-
 .avatar .avatar-name {
-  color: #ffffff;
+  color: #000;
   font-size: 1rem;
   line-height: 3.9;
 }
 
 .avatar.avatar-sm .avatar-name {
-  font-size: 0.8rem;
+  color: #f8f8f8;
+  font-size: 0.89rem;
+  /*text-transform:;*/
   line-height: 3.6;
 }
-
 .avatar.avatar-xl .avatar-name {
   font-size: 1.5rem;
   line-height: 2.9;
@@ -5207,7 +5213,6 @@ input:checked + .slider.name:before {
   font-size: 1.8rem;
   line-height: 2.8;
 }
-
 .avatar-group {
   margin-left: 10px;
 }
@@ -8976,4 +8981,133 @@ h6 a,
   float: left;
   padding-right: 15px;
 }
-
+/* sweetalert2 */
+.swal2-popup {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    border-radius:0;
+    padding: 1.25em;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.swal2-icon {
+    position: relative;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    /* margin: 1.25em auto 1.875em; */
+    border: .25em solid transparent;
+    border-radius: 50%;
+    line-height: 5em;
+    cursor: default;
+    box-sizing: content-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    zoom: normal;
+};
+.swal2-icon.swal2-success {
+    border-color: #c2ffa0;
+}
+.swal2-popup .swal2-title {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  color: #595959;
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+  text-transform: none;
+  word-wrap: break-word;
+}
+/* member profile */
+.giving-top-bar button {
+  display: flex;
+  justify-content: center;
+  height: 64px;
+  width: 100%;
+  padding: 22px;
+  border: none;
+  background-color: transparent;
+  color: #343434;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+.giving-top-bar{ 
+  min-height: 0;
+  margin-bottom: 25px;
+  padding: 0!important;
+}
+.giving-top-bar .card-body{ 
+  padding: 0!important;
+}
+.no-pad{ 
+  padding: 0px 0px;
+}
+/* Member Grop List */
+#member-group li{
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid rgba(52, 52, 52, 0.2);
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+#member-group li span{ 
+  font-size: 20px;
+  font-weight:100;
+  transition: all ease-in;
+}
+#member-group li span:hover{ 
+  color: #cccc;
+  cursor: pointer;
+}
+/* Giving Totals */
+.bottom-totals {
+    display: inline-block;
+    width: 100%;
+    background-color: #e6e6e6;
+    padding: 15px 25px;
+    margin-top: -30px;
+    border-radius: 0 0 4px 4px;
+}
+.bottom-totals .bottom-wrapper {
+    float: right;
+    padding-right: 9px;
+}
+.bottom-totals ul {
+    float: left;
+    padding-left: 40px;
+    list-style: none;
+    text-align: right;
+}
+.bottom-totals ul li:not(:first-child) {
+    margin-top: 12px;
+    opacity: .7;
+}
+.bottom-totals span:hover {
+    cursor: pointer;
+}
+.bottom-totals span i.la {
+    line-height: 17px;
+    color: #808080;
+    margin-left: 10px;
+}
+.bottom-totals span:not(.collapsed) .la {
+    transform: rotateZ(180deg);
+}
+#totalGiving{ 
+  font-size: 17px;
+  font-weight: 500;
+}
