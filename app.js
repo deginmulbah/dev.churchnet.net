@@ -14,9 +14,8 @@ const flashMessageMiddleware = require('./middleware/flash');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const is_auth = require('./middleware/is_auth');
 const app = express();
-const port = process.env.PORT
 const mongoUri = process.env.DATABASE_URL;
-const staticFolder = process.env.NODE_ENV === "development" ? "public" : "dist";
+// const staticFolder = process.env.NODE_ENV === "development" ? "public" : "dist";
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(compression());
 // db connection
@@ -52,7 +51,7 @@ app.use(
 app.use(cookieParser()); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, staticFolder)));
+app.use(express.static(path.join(__dirname, "/public")));
 const store = MongoDBStore({
     uri: mongoUri,
     collection: "userSession"
@@ -85,6 +84,7 @@ app.use('/admin/dashboard',is_auth, dashboard);
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
+const port = process.env.PORT || 500
 app.listen(port, () => {
     console.log(`server is running on ${port}`)
 })
