@@ -23,23 +23,30 @@ $(document).ready(function () {
                 render:function(data, type, row){
                 const fullname = `${data} ${row['middlename']} ${row["lastname"]}`;
                 return `<a class="d-flex align-items-center" href="/admin/member/member_profile/${row['_id']}">
-                <div class="avatar avatar-sm bg-primary mr-3 initial-sm">
-                    <span class="avatar-name">${row['initial']}</span>
-                 </div>
+                        <div class="avatar avatar-sm bg-primary mr-3 user-initial-sm">
+                            <span class="avatar-name">${row['initial']}</span>
+                        </div>
                      <span>${fullname}</span>
                 </a>`
              }
             },
             { data: "gender" },
-            { data: "contact.primaryemail" },
+            { 
+                data: "contact.primaryemail",
+                render: function (data, type , row) { 
+                    return (data) ? data : "N/A"
+                } 
+            },
             { 
                 data: "contact.primarynumber",
+            },
+            { 
+                data: "_id",
                 render: function(data,type,row) {
-                    return `${data} <a href="javascript:void(0)" id="message" class="action-icon message pull-right" data-row-id="${row._id}"><i class="la la-envelope-o"></i></a>
-                    <a href="javascript:void(0)" id="add-giving" class="action-icon giving pull-right" data-row-id="${row._id}"><i class="la la-money"></i></a>`
+                    return `<a href="javascript:void(0)" id="delete-giving" class="action-icon giving pull-right" data-row-id="${data}"><i class="la la-money"></i></a>`
                 }
-            }
-    ]
+            },
+        ]
     })
     // search datatable
     $('#filter_table').keyup(function(){

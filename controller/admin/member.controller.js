@@ -4,32 +4,62 @@ const Member = require('../../model/admin/member.model');
 const Giving = require('../../model/admin/member_giving.model');
 const generate_pwd = require('../../helper/generate_pwd');
 const moment = require('moment');
-const mongoose = require('mongoose')
-
-// **** search member page
+const mongoose = require('mongoose');
+const dashboardsession = require('../../controller/admin/dashboardheader');
+// **** member  search page
 exports.member_search = async (req, res) => {
-    res.render('admin/dashboard/member/member_search', {
-        pageTitle: "Search Member",
-        pageName: "searchmember"
-    })
+    try{ 
+        // get session info
+        const _id = req.session.user._id;
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
+        res.render('admin/dashboard/member/member_search', {
+            pageTitle: "Search Member",
+            pageName: "searchmember",
+            userSession: loggedinuser,
+            systemInfo: systemInfo
+        })
+    } catch (error) { 
+       res.status(500).json({error:"true" , success:"false" , msg:error})
+    }
 }
-// *** list members page
+// ***  members list page
 exports.member_list = async (req, res) => {
-    res.render('admin/dashboard/member/member_list', {
-        pageTitle: "Member List",
-        pageName: "list",
-        member_info: ''
-    })
+    try { 
+         // get session info
+        const _id = req.session.user._id;
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
+        res.render('admin/dashboard/member/member_list', {
+            pageTitle: "Member List",
+            pageName: "listmember",
+            member_info: '',
+            userSession: loggedinuser,
+            systemInfo: systemInfo
+        })
+    } catch (error) { 
+        res.status(500).json({error:"true" , success:"false" , msg:error})
+    }
 }
 // *** add members page
 exports.add_member = async (req, res) => {
-    res.render('admin/dashboard/member/register_member', {
-        pageTitle: "Add Members",
-        pageName: "add",
-        member_info: ''
-    })
+    try{ 
+        // get session info
+        const _id = req.session.user._id;
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
+        res.render('admin/dashboard/member/register_member', {
+            pageTitle: "Add Members",
+            pageName: "add",
+            member_info: '',
+            userSession: loggedinuser,
+            systemInfo: systemInfo
+        })
+    } catch (error) { 
+        res.json(500).json({error:"true" , success:"false" , msg:error})
+    }
 }
-// **** save member details
+// **** save / update member details
 exports.save_member = async (req, res) => {
     try {
         const member_id = req.body.id; // member id use for updata
@@ -120,7 +150,9 @@ exports.search_member = async (req, res) => {
 exports.search_qurey = async (req, res) => {
     try {
         const regExp = new RegExp(req.query.q, 'i')
-        const data = await Member.find({firstname:regExp},{firstname:1,middlename:1,lastname:1}).sort({created_at:'desc'}).limit(20);
+        const data = await Member.find({firstname:regExp},
+            {firstname:1,middlename:1,lastname:1})
+            .sort({created_at:'desc'});
         if (data) return res.status(200).json({ data })
     } catch (error) {
      res.status(500).json({success:"false" , error:"ture" , msg:error});
@@ -138,7 +170,7 @@ exports.add_member_group = async (req, res) => {
     }
 }
 // remove member from group
-exports.remove_group = async (req, res) => { 
+exports.remove_group_member = async (req, res) => { 
     try{
         const member_id = req.body.id;
         const group_id = req.body.group; 
@@ -146,7 +178,7 @@ exports.remove_group = async (req, res) => {
             {_id:member_id},
             {$pull:{groups:group_id}}
         );
-        res.status(200).json({success:"true" , error:"false", msg:"group removed"})
+        if(removed) res.status(200).json({success:"true" , error:"false", msg:"group removed"})
     } catch (error){ 
         res.status(500).json({success:"false" , error:"ture" , msg:error});
     }
@@ -155,7 +187,6 @@ exports.remove_group = async (req, res) => {
 exports.member_giving = async (req, res) => { 
     try{
         const giving_id = req.body.giving_id;
-        
         const giving = { 
             member_id:req.body.id,
             amount: req.body.amount,
@@ -219,25 +250,30 @@ exports.delete_giving = async (req,res) => {
     }
 }
 // add member family
-exports.add_member_family = async(req,res) => { 
-    try{
-       const fam = req.body.fam;
-       const rel = req.body.fam_rel;
-       const id = req.body.member_id;
-       const saveFam = await Member.update(
-         {_id:id},
-         {$push:{family:[{family_id:fam, family_rel:rel}]}}
-        )
-       res.redirect(`/admin/member/member_profile/${id}`)
-    } catch(error){ 
-         res.status(500).json({success:"false" , error:"ture" , msg:error});
-    }
-}
+// // ** bug
+// exports.add_member_family = async(req,res) => { 
+//     try{
+//        const fam = req.body.fam;
+//        const rel = req.body.fam_rel;
+//        const id = req.body.member_id; 
+//        const saveFam = await Member.update(
+//          {_id:id},
+//          {$push:{family:[{family_id:fam, family_rel:rel}]}}
+//         )
+//        res.redirect(`/admin/member/member_profile/${id}`)
+//     } catch(error){ 
+//          res.status(500).json({success:"false" , error:"ture" , msg:error});
+//     }
+// }
 // *** get member profile
 exports.member_profile = async (req, res) => {
     try {
-        const id = mongoose.Types.ObjectId(req.params.id);
+        const _id = req.session.user._id;
+        // get session info
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
         //get member personanl info
+        const id = mongoose.Types.ObjectId(req.params.id);
         const data = await Member.find({_id:id});
         if(data){ 
         //get member group info
@@ -312,13 +348,14 @@ exports.member_profile = async (req, res) => {
                 moment: moment,
                 member: details,
                 group: group,
-                family:member_family
+                family:member_family,
+                userSession: loggedinuser,
+                systemInfo: systemInfo
             });
            }) 
          }
         }
         catch (error) {
-        console.log(error);
         res.status(500).json({success:"false" , error:"ture" , msg:error});
     };
 }

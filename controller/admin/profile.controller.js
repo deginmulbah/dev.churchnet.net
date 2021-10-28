@@ -3,19 +3,26 @@ const { validationResult } = require('express-validator');
 const cloudinary = require('../../config/media_upload')
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const dashboardsession = require('../../controller/admin/dashboardheader');
+
 // ===================== get user pofile page =======================
 exports.getProfile = async (req, res) => {
      try {
-          const _id = req.session.user._id
+          const _id = req.session.user._id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(_id);
+          const systemInfo = await dashboardsession.getSysInfo();
           const user = await User.findById({ _id })
           res.render('admin/dashboard/user/profile', {
                pageTitle: "User Profile",
                userDetials: user,
                pageName:"profile",
-               moment: moment
+               moment: moment,
+               userSession: loggedinuser,
+               systemInfo: systemInfo
           })
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" ,msg:error})
      }
 }
 //===================== Edit Profile ==========================
@@ -23,6 +30,8 @@ exports.getProfile = async (req, res) => {
 exports.getEditprofile = async (req, res) => {
      try {
           const _id = req.session.user._id
+          const loggedinuser = await dashboardsession.signedInUser(_id);
+          const systemInfo = await dashboardsession.getSysInfo();
           const user = await User.findById({ _id })
           res.render('admin/dashboard/user/editprofile', {
                pageTitle: "Edit Profile",
@@ -35,10 +44,12 @@ exports.getEditprofile = async (req, res) => {
                },
                userDetials: user,
                pageName :'edit_profile',
-               moment: moment
+               moment: moment,
+               userSession: loggedinuser,
+               systemInfo: systemInfo
           })
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" ,msg:error})
      }
 }
 // @updata 
@@ -79,47 +90,6 @@ exports.updateUserProfile = async (req, res) => {
           }
           req.flash('success', 'Profile updated successfully');
           return res.redirect('/admin/profile/edit_profile');
-     }).catch((error) => {
-          console.log(error)
-     })
-}
-
-exports.update_profile_pic = async (req, res) => {
-     const id = req.session.user._id;
-     let file;
-     if (req.files === null) {
-          // file = './public/uploads/useravater/08.png';
-          req.flash('error', 'You did not select a picture to upload !')
-          return res.redirect('/admin/profile/edit_profile')
-     }
-     if (req.files) {
-          file = req.files.avater.tempFilePath;
-          if (req.files.avater.mimetype != "image/png" &&
-               req.files.avater.mimetype != "image/jpg" &&
-               req.files.avater.mimetype != "image/jpeg") {
-               req.flash('error', 'Invalid file type');
-               return res.redirect('/admin/profile/edit_profile')
-          }
-     }
-     cloudinary.uploader.upload(file, {
-          widht: 140, height: 140, crop: "scale"
-     }).then((result) => {
-          User.updateOne(
-               { _id: id },
-               {
-                    $set: {
-                         avater: result.url,
-                    },
-               },
-               { new: true }
-          ).then((doc) => {
-               if (doc) {
-                    req.flash('success', 'Profile picture uploaded successfully')
-                    return res.redirect('/admin/profile/edit_profile')
-               }
-          }).catch((err) => {
-               console.log(err)
-          })
      }).catch((error) => {
           console.log(error)
      })

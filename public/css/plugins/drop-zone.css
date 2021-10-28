@@ -15,15 +15,20 @@
   right: 23em;
   top: -6px;
 }
+@media screen and (max-width: 767px){
+  .box-tools {
+    right: 21em;
+  }
+}
 .box-tools .fa{ 
-  background-color:#000;
+  background-color:rgb(71, 68, 68);
   color: #fff;
   padding: 5px;
   border-radius: 50%;
 }
 .box-tools .fa:hover{ 
   cursor: pointer;
-  background-color:rgba(0, 0, 0, 0.337);
+  background-color:red
 }
 .dropzone-wrapper {
   border: 1px dashed #cccccc;

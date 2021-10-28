@@ -9,10 +9,9 @@ $(document).ready(function(){
      success: function (res) { 
        let data = res;
        data.forEach(element => {
-          const monthdata = moment(element._id).format("MMM");
-          console.log(month);
+          const monthdata = moment(new Date(element._id)).format("MMM");
           month.push(monthdata);
-          chartdata.push(element.count);
+          chartdata.push(parseInt(element.count));
       });
      }
     });
@@ -65,6 +64,15 @@ $(document).ready(function(){
       fill: {
         opacity: 1
       },
+      // title:{
+      //   text:"Month visitors",
+      //   align:"center",
+      //   margin: 20,
+      //   offsetY:20,
+      //   style:{
+      //     fontSize:"12px",
+      //   }
+      // },
       tooltip: {
         y: {
           formatter: function (val) {

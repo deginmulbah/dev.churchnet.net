@@ -81,7 +81,7 @@ check('address').custom((value) => {
 }),
 validation,member.save_member);
 // add member family 
-router.post('/add_family', member.add_member_family);
+// router.post('/add_family', member.add_member_family);
 // get members
 router.get('/get_members' , member.get_members);
 // search member by name , email and phone number
@@ -93,7 +93,7 @@ router.get('/member_profile/:id' , member.member_profile);
 // remove member from group
 router.post("/add_member_group" , member.add_member_group);
 // remove member from group
-router.post("/remove_group" , member.remove_group);
+router.post("/remove_group" , member.remove_group_member);
 // add member giving
 router.post("/add_giving" ,
 check('date').custom((value) => {

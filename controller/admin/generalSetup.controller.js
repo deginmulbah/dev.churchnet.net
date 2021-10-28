@@ -1,9 +1,16 @@
 const { validationResult } = require('express-validator');
 const Church_setup = require('../../model/admin/generalSetup.model');
 const moment = require('moment');
+const dashboardsession = require('../../controller/admin/dashboardheader');
+
 // Get set page
 exports.general_setup = async (req, res) => {
      try {
+          const _id = req.session.user._id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(_id);
+          const systemInfo = await dashboardsession.getSysInfo();
+          // get setup info
           const doc = await Church_setup.findOne({ is_inserted: true });
           res.render('admin/dashboard/setup/general_setup', {
                pageTitle: "General Setting",
@@ -12,6 +19,8 @@ exports.general_setup = async (req, res) => {
                validationErrors: [],
                data: doc,
                moment: moment,
+               userSession: loggedinuser,
+               systemInfo: systemInfo
           })
      } catch (error) {
           res.json({error:"true",success:"false",msg:error})
@@ -33,17 +42,32 @@ exports.upload_logo = async (req, res) => {
 }
 //Add setup info
 exports.addSetup = async (req, res) => {
-     const { churchname, address, email, pho1, pho2, country,
-          state, city, year_est, curr_year, serv_start, serv_end, history, accountno, bankname, accountno2, bankname2 } = req.body;
-     const errors = validationResult(req);
      try {
+          const _id = req.session.user._id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(_id);
+          const systemInfo = await dashboardsession.getSysInfo();
+          const {
+               churchname, 
+               address, email, 
+               pho1, pho2, country,
+               state, city, 
+               year_est, curr_year, 
+               serv_start, 
+               serv_end, history, 
+               accountno, bankname,
+               accountno2, bankname2 
+          } = req.body;
+          const errors = validationResult(req);
           if (!errors.isEmpty()) {
                res.render('admin/dashboard/setup/general_setup', {
                     pageTitle: "General Setting",
                     pageName: "general_setup",
                     errorMessage: "",
                     validationErrors: [],
-                    data: {}
+                    data: {},
+                    userSession: loggedinuser,
+                    systemInfo: systemInfo
                })
           }
           const add_setup = new Church_setup({

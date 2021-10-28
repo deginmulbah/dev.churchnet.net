@@ -27,7 +27,14 @@ $(document).ready(function () {
             { data: "created_at",
                 render:function (data) {
                     return moment(data).format('l');
-            }}
+                }
+            },
+            { data: "_id",
+                render:function (data) {
+                    
+                    return `<a href="/admin/group/deleteGroup/${data}" class="action-icon edit pull-right"><i class="la la-times"></i></a>`;
+                }
+            },
     ],
     })
     // search datatable

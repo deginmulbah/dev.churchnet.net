@@ -3,151 +3,168 @@
 <div class="wrapper">
 	<% include ../partials/sidebar %>
 <div class="main-panel">
-	<div class="panel-hedding">
-		<div class="row">
-			<div class="col-lg-6 col-xxl-4">
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">Member Statistic</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col">
-								<div class="bg-light p-4 border-radius mb-4">
-									<h3><%= memberStats.members %></h3>
-									<span>Registered Member</span>
-								</div>
-							</div>
-							<div class="col"> 
-								<div class="bg-light p-4 border-radius mb-4">
-									<h3><%= memberStats.male %></h3>
-									<span>Total Male</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="bg-light p-4 border-radius mb-4">
-									<h3><%= memberStats.female %></h3>
-									<span>Total Female</span>
-								</div>
-							</div>
-						</div>
+	<div class="row">
+		<div class="col-lg-6 col-xxl-4">
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">Member Statistic</h4>
 					</div>
 				</div>
-				<div class="card">
-					<div class="card-body">
-						<div class="d-flex align-items-end">
-								<div class="mr-2">
-									<h3 class="mb-2"><%= group %></h3>
-									<p class="mb-0 mt-3">Total Departments</p>
-								</div>
-								<button type="button" class="btn btn-lg btn-overlay-info btn-icon ml-auto"> <i class="fa fa-sitemap"></i></button>
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<div class="bg-light p-4 border-radius mb-4">
+								<h3><%= memberStats.members %></h3>
+								<span>Registered Member</span>
+							</div>
+						</div>
+						<div class="col"> 
+							<div class="bg-light p-4 border-radius mb-4">
+								<h3><%= memberStats.male %></h3>
+								<span>Total Male</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="bg-light p-4 border-radius mb-4">
+								<h3><%= memberStats.female %></h3>
+								<span>Total Female</span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-6 col-xxl-3">
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">Monthly Visitors</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<div id="monthly-visiitor"></div>
+			<div class="card">
+				<div class="card-body">
+					<div class="d-flex align-items-end">
+							<div class="mr-2">
+								<h3 class="mb-2"><%= group %></h3>
+								<p class="mb-0 mt-3">Total Departments</p>
+							</div>
+							<button type="button" class="btn btn-lg btn-overlay-info btn-icon ml-auto"> <i class="fa fa-sitemap"></i></button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-9">
-				 <div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">Upcomming Events</h4>
-						</div>
+		<div class="col-lg-6 col-xxl-3">
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">Monthly Visitors</h4>
 					</div>
-				  <div class="card-body">
-					  <div class="table-responsive">
-						   <table class="table table-centered table-hover mb-1">
-							  <thead>
-							    <tr>
-							      <th scope="col">Event </th>
-							      <th scope="col">Date Start</th>
-							      <th scope="col">Date Ends</th>
-							      <th scope="col">Description</th>
-							      <th scope="col">Action</th>
-							    </tr>
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <td>Women Fellowship</td>	
-							      <td>4/6/2021</td>
-							      <td>4/6/2021</td>
-							      <td>women meet for Fellowship</td>
-							      <td><a class="btn btn-overlay-primary text-primary btn-icon btn-sm mr-2 mb-1" href="#"><i class="la la-edit"></i> </a><a class="btn btn-overlay-danger text-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a></td>
-							    </tr>
-							    <tr>
-									<td>Men Fellowship</td>	
-									<td>4/6/2021</td>
-									<td>4/6/2021</td>
-									<td>Men meet for Fellowship</td>
-									<td><a class="btn btn-overlay-primary text-primary btn-icon btn-sm mr-2 mb-1" href="#"><i class="la la-edit"></i> </a><a class="btn btn-overlay-danger text-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a></td>
-								  </tr>
-							  </tbody>
-							</table>
-					  </div>
-				  </div>
 				</div>
-			</div>
-			<div class="col-lg-3">
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">Latest activity</h4>
-						</div>
-					</div>
-				  <div class="card-body">
-				  	<div class="activity">
-				      <div class="activity-item">
-						    <div class="date">Sep 25</div>
-						    <div class="text">Responded to need <a href="single-need.html">“Volunteer opportunity”</a></div>
-						  </div>
-						  <div class="activity-item">
-						    <div class="date">Sep 24</div>
-						    <div class="text">Added an interest “Volunteer Activities”</div>
-						  </div>
-						  <div class="activity-item">
-						    <div class="date">Sep 23</div>
-						    <div class="text">Joined the group <a href="single-group.html">“Boardsmanship Forum”</a></div>
-						  </div>
-						  <div class="activity-item">
-						    <div class="date">Sep 21</div>
-						    <div class="text">Responded to need <a href="single-need.html">“In-Kind Opportunity”</a></div>
-						  </div>
-						  <div class="activity-item">
-						    <div class="date">Sep 18</div>
-						    <div class="text">Created need <a href="single-need.html">“Volunteer Opportunity”</a></div>
-						  </div>
-						  <div class="activity-item">
-						    <div class="date">Sep 24</div>
-						    <div class="text">Added an interest “Volunteer Activities”</div>
-						  </div>
-						  <div class="activity-item">
-						    <div class="date">Sep 17</div>
-						    <div class="text">Attending the event <a href="single-event.html">“Some New Event”</a></div>
-						  </div>
-					 </div>
-				  </div>
+				<div class="card-body">
+					<div id="monthly-visiitor"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+	<div class="row">
+		<div class="col-lg-9">
+			<!-- events -->
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">Today's Events</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<% if(events.length) { %> 
+						<div class="table-responsive">
+							<table class="table table-centered table-hover mb-1">
+								<thead>
+								<tr>
+									<th scope="col">Event </th>
+									<th scope="col">Date Start</th>
+									<th scope="col">Date Ends</th>
+									<th scope="col">Description</th>
+									<th scope="col">Action</th>
+								</tr>
+								</thead>
+								<tbody>
+									<% for (let i = 0; i < events.length; i++) { -%>
+										<tr>
+											<td><%= events[i].title %> </td>	
+											<td><%= moment(events[i].startDate).format('l') %></td>
+											<td><%= moment(events[i].endDate).format('l') %></td>
+											<td>women meet for Fellowship</td>
+											<td>
+												<a class="btn btn-overlay-primary text-primary btn-icon btn-sm mr-2 mb-1" href="#"><i class="la la-edit"></i> </a><a class="btn btn-overlay-danger text-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a>
+											</td>
+										</tr>
+									<% } -%> 
+								</tbody>
+							</table>
+						</div>
+					<% } else { %> 
+						<div class="text-center">
+							<span class="no-event"><i class="fa fa-calendar-minus-o text-primary"></i></span>
+							<p>No Event Schedule For Today</p>
+						</div>
+					<% } %> 
+				</div>
+			</div>
+			<!-- calendar -->
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">Full Calendar</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<div id="calendar" class="fc-calendar"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">Latest activity</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="activity">
+						<div class="activity-item">
+							<div class="date">Sep 25</div>
+							<div class="text">Responded to need <a href="single-need.html">“Volunteer opportunity”</a></div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 24</div>
+							<div class="text">Added an interest “Volunteer Activities”</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 23</div>
+							<div class="text">Joined the group <a href="single-group.html">“Boardsmanship Forum”</a></div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 21</div>
+							<div class="text">Responded to need <a href="single-need.html">“In-Kind Opportunity”</a></div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 18</div>
+							<div class="text">Created need <a href="single-need.html">“Volunteer Opportunity”</a></div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 24</div>
+							<div class="text">Added an interest “Volunteer Activities”</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 17</div>
+							<div class="text">Attending the event <a href="single-event.html">“Some New Event”</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </div>
 <% include ../partials/footer %>
 <script src="/js/moment.min.js"></script>
 <!-- apexcharts -->
 <script src="/js/apexcharts/apexcharts.min.js"></script>
 <script src="/js/view_script/dashboard-chart.js"></script>
+<script src="/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="/js/calendar/fullcalendar.min.js"></script>
+<script src="/js/view_script/calendar.js"></script>

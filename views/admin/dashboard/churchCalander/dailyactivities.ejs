@@ -1,0 +1,215 @@
+<!-- **********  main-panel  ********** -->
+<% include ../../partials/header %>
+<div class="wrapper">
+<% include ../../partials/sidebar %>
+    <div class="main-panel">
+        <div class="panel-hedding">
+            <div class="mb-4">
+                <a href="/admin/group/list"><i class="fa fa-arrow-left mr-2"></i>Groups</a>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1><%= pageTitle %> </h1>
+                </div>
+                <div class="col-md-6">
+                    <div class="add-new">
+                        <a class="btn btn-primary" href="#!" data-toggle="modal" data-target="#addActivity">
+                            <i class="feather icon-plus"></i>Activities</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <% if (successFlashMessage) { -%>
+                    <div class="alert alert-success new2 p-4">
+                       <i class="fa fa-check-circle" aria-hidden="true"></i>
+                       <span class="alert-body">
+                         <h6 class="alert-header">Success</h6>
+                         <p class="mb-0"><%= successFlashMessage %></p>
+                       </span>
+                    </div>
+                <% } -%> 
+                <div class="card">
+                    <div class="card-body ">
+                        <% if (activityinfo.length) { -%>
+                            <ul class="list-group list-group-flush">
+                                <% for (var i = 0; i < activityinfo.length; i++) { -%>
+                                    <li class="list-group-item activity-container" data-id="<%= activityinfo[i]._id %>" data-day="<%= activityinfo[i].day -%>">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>
+                                                <i class="fa fa-calendar text-primary"></i>
+                                                <%= activityinfo[i].day -%>
+                                            </h5>
+                                            <div class="activityicon">
+                                                <i data-tips="tooltip" title="Edit" data-placement="top"  class="fa fa-edit text-dark edit-activity"></i>
+                                                <i data-tips="tooltip" title="Add" data-placement="top" class="fa fa-plus-square add-activity text-primary"></i>
+                                                <i data-tips="tooltip" title="Remove" data-placement="top" class="fa fa-trash-o text-danger remove-activity"></i>
+                                            </div>
+                                        </div>
+                                         <ul class="list-unstyled">
+                                            <% for( let j = 0; j < activityinfo[i].activities.length; j++ ) { %>
+                                            <li class="mb-2">
+                                                <%= activityinfo[i].activities[j].name %>
+                                                <% if (activityinfo[i].activities[j].start) { %>
+                                                    <i data-tips="tooltip" title="Start" data-placement="top" class="fa fa-circle text-primary ml-2"></i><span>
+                                                    <%= activityinfo[i].activities[j].start %></span>
+                                                <% } %>
+                                                <% if (activityinfo[i].activities[j].end) { %>
+                                                    <i data-tips="tooltip" title="End" data-placement="top" class="fa fa-circle text-danger  ml-2"></i>
+                                                    <span><%= activityinfo[i].activities[j].end %></span>
+                                                <% } %>
+                                            </li>
+                                            <% } %>
+                                         </ul>
+                                    </li>
+                                <% } -%>
+                            </ul>
+                        <% } else { -%>
+                            <div class="bg-light text-center p-lg-5 p-5">
+                                <p class="mb-0">No activity</p>
+                                <span>
+                                    <a href="#" data-toggle="modal" data-target="#addActivity">
+                                        Add activities
+                                        <i class="fa fa-calendar-check-o ml-2"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        <% } -%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add activities modal -->
+    <div class="modal fade" id="addActivity" tabindex="-1" role="dialog" aria-labelledby="addActivityLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addActivityLabel">Add Activity</h5>
+                <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-5">
+              <form id="activitie" action="/admin/calander/add_activities">
+                  <div class="form-group">
+                    <label for="day">Select Day</label>
+                    <select class="form-control" name="day" id="day">
+                        <option selected disabled>~ select day ~</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Satuday">Satuday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                    <span class="error"></span>
+                </div>
+                <div class="field_wrapper">
+                    <div class="row"> 
+                        <div class="form-group col-md-4">
+                            <label for="name">Title</label>
+                            <input type="text" class="form-control" name="name[]" id="name">
+                            <span class="error"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="start">Start</label>
+                            <input type="text" class="form-control time" name="start[]" id="start">
+                            <span class="error"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="end">End</label>
+                            <input type="text"class="form-control time" name="end[]" id="end">
+                            <span class="error"></span>
+                        </div>
+                    </div> 
+                 </div> 
+                  <div>
+                      <a href="javascript:void(0)" class="add_button"><i class="fa fa-plus-circle"></i> add more</a>
+                  </div>                
+                 <div class="modal-footer"> 
+                    <button type="submit" class="btn btn-primary pull-right">Save</button>
+                 </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <!-- add activities -->
+    <!-- add more activity -->
+    <div class="modal fade" id="addMoreActivity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modelLabel"></h5>
+              <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <form action="/admin/calander/add_more_activity" method="POST">
+                <input type="hidden" name="id" id="activity_id"/>
+                <div class="field_wrapper">
+                    <div class="row"> 
+                        <div class="form-group col-md-4">
+                            <label for="name">Title</label>
+                            <input type="text" class="form-control" name="name[]" id="name">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="start">Start</label>
+                            <input type="text" class="form-control time" name="start[]" id="start">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="end">End</label>
+                            <input type="text" class="form-control time" name="end[]" id="end">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="javascript:void(0)" class="add_button"><i class="fa fa-plus-circle"></i> add more</a>
+                </div>
+               <div class="modal-footer">
+                   <button type="submit" class="btn btn-primary pull-right">Add</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- add more activity -->
+    <!-- edit activities -->
+    <!-- Modal -->
+    <div class="modal fade" id="updateActivities" tabindex="-1" role="dialog" aria-labelledby="addActivityLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateLabel"></h5>
+                <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-5">
+              <form action="/admin/calander/update_activities" method="POST">
+                    <input type="hidden" id="activityid" name="id"/>
+                    <input type="hidden" class="form-control" id="updateday" name="day"/>
+                    <div id="field_container" class="field_wrapper"></div>
+                    <div class="modal-footer">                    
+                        <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+                    </div>
+              </form>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <!-- add activities -->
+<% include ../../partials/footer %>
+<script src="/js/moment.min.js"></script>
+<script src="/js/toastr/toastr.min.js"></script>
+<script src="/js/toastr/toastr-custom.js"></script>
+<script src="/js/sweetalert2/sweetalert2.min.js"></script>
+<script src="/js/sweetalert2/sweetalert2-custom.js"></script>
+<script src="/js/view_script/custom_validation.js"></script>
+<script src="/js/view_script/daily_activities.js"></script>

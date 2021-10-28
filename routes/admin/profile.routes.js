@@ -15,7 +15,6 @@ router.post("/update_profile",
     body("phone").trim(),
     body("username").isEmail().withMessage("Please input a valid email address"),
     is_auth, profileController.updateUserProfile);
-    router.post("/update_profile_pic", is_auth, profileController.update_profile_pic);
 //==============Reset admin Password ==================
 router.post("/resetpwd",
     body('newpwd')

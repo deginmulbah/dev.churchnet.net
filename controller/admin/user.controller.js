@@ -2,13 +2,25 @@ const { validationResult } = require('express-validator');
 const User = require('../../model/admin/adminUser.model');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const dashboardsession = require('../../controller/admin/dashboardheader');
 
 //================ Get add user page =================
 exports.create_user_account = async (req, res) => {
-     res.render('admin/dashboard/user/add_user_account', {
-          title: "Add User Account",
-          pageName: "create_user_account",
-     })
+     try{ 
+          const sessionId = req.session.user._id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(sessionId);
+          const systemInfo = await dashboardsession.getSysInfo();
+          res.render('admin/dashboard/user/add_user_account', {
+               pageTitle: "Add User Account",
+               pageName: "create_user_account",
+               userSession: loggedinuser,
+               systemInfo: systemInfo
+          })
+     } catch(error) { 
+          console.log(error)
+          res.json({error:"true" , success:"false" , msg:error})
+     }
 }
 //================ Create user =================
 exports.addUser = async (req, res) => {
@@ -40,19 +52,24 @@ exports.addUser = async (req, res) => {
                msg: "success", msgtxt: "User added successfully"
           })
      } catch (error) {
-          console.log(error)
-          res.status(500)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 //================ view all user =================
 exports.all_user = async (req, res) => {
-     try {        
+     try { 
+          const sessionId = req.session.user._id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(sessionId);
+          const systemInfo = await dashboardsession.getSysInfo();       
           res.render('admin/dashboard/user/view_users', {
                pageTitle: "Users Directory",
                pageName:  "all_user",
+               userSession: loggedinuser,
+               systemInfo: systemInfo
           })
      } catch (error) {
-          console.log(error)
+           res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.get_get_users = async (req, res) => {
@@ -63,7 +80,7 @@ exports.get_get_users = async (req, res) => {
           } 
           return res.status(500).json({error:"error" , msg:"can't get users"})
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.delete_user_account = async (req, res) => {
@@ -78,12 +95,16 @@ exports.delete_user_account = async (req, res) => {
           req.flash('success', `${del_user.fname} account has been deleted !!`);
           return res.redirect('/admin/user/view_users');
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.edit_user_account = async (req, res) => {
-     const id = req.params.id;
      try {
+          const sessionId = req.session.user._id;
+          const id = req.params.id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(sessionId);
+          const systemInfo = await dashboardsession.getSysInfo();     
           const get_user = await User.findById({ _id: id });
           if (!get_user) {
                req.flash('error', 'User account not found');
@@ -92,11 +113,12 @@ exports.edit_user_account = async (req, res) => {
           res.render('admin/dashboard/user/edit_user_account', {
                pageTitle: "User Account",
                pageName:'edit_user',
-               user: get_user
+               user: get_user,
+               userSession: loggedinuser,
+               systemInfo: systemInfo
           })
      } catch (error) {
-          console.log(error)
-          res.status(500)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.update_user_account = async (req, res) => {
@@ -132,24 +154,30 @@ exports.update_user_account = async (req, res) => {
           req.flash('success', `account was successfully update`);
           return res.redirect('/admin/user/view_users');
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.view_user_profile = async (req, res) => {
-     const id = req.params.id;
      try {
+          const sessionId = req.session.user._id;
+          const id = req.params.id;
+          // get session info
+          const loggedinuser = await dashboardsession.signedInUser(sessionId);
+          const systemInfo = await dashboardsession.getSysInfo();
           const doc = await User.findById({ _id: id })
           if (doc) {
                return res.render('admin/dashboard/user/view_user_profile', {
                     pageTitle: "Profile",
                     pageName:"view_profile",
                     userDetials: doc,
+                    userSession: loggedinuser,
+                    systemInfo: systemInfo
                })
           }
           req.flash('error', 'user not found');
           return res.redirect('/admin/user/view_users')
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.reset_user_password = async (req, res) => {
@@ -178,8 +206,7 @@ exports.reset_user_password = async (req, res) => {
           }
           return res.json({ msg: "success", msgtxt: "Password Updated Successfully" })
      } catch (error) {
-          console.log(error)
-          res.status(500)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }
 exports.user_header_info = async (req, res) => {
@@ -189,6 +216,6 @@ exports.user_header_info = async (req, res) => {
           if (!info) return res.status(500)
           return res.json(info)
      } catch (error) {
-          console.log(error)
+          res.json({error:"true" , success:"false" , msg:error})
      }
 }

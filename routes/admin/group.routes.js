@@ -36,4 +36,7 @@ router.get('/search_query',group_controller.search_qurey);
 router.post('/get_group_members',group_controller.getGroupMember);
 // remove group meeting day
 router.post('/remove_meetingday',group_controller.removeGroupMeetingDay);
+// remove group
+router.get("/deleteGroup/:id" , group_controller.deleteGroup);
+router.post("/remove_member" , group_controller.remove_group_member);
 module.exports = router

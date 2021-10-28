@@ -35,7 +35,8 @@ const visitor = require('./routes/admin/visitor.routes');
 const communication = require('./routes/admin/comm.routes');
 const dashboard = require('./routes/admin/dashboard.routes');
 const fundraise = require('./routes/admin/fundraise.routes');
-
+const sms = require('./routes/admin/sms.routes');
+const churchCalander = require('./routes/admin/churchCalander.routes');
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
@@ -60,8 +61,8 @@ app.use(session({
     saveUninitialized: false,
     store: store,
     // cookie:{ 
-    //     expires:oneDay,
-    //     secure: true
+    //     expires:oneDay, 
+    //     secure: true 
     // }
 }));
 app.use(flash());
@@ -78,11 +79,13 @@ app.use('/admin/communication',is_auth, communication);
 app.use('/admin/visitor',is_auth, visitor);
 app.use('/admin/fundraising',is_auth, fundraise);
 app.use('/admin/dashboard',is_auth, dashboard);
+app.use('/admin/sms',is_auth, sms);
+app.use('/admin/calander',is_auth, churchCalander);
 //404 error page
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 7000
 app.listen(port, () => {
     console.log(`server is running on ${port}`)
 })

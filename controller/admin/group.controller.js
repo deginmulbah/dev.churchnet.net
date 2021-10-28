@@ -1,20 +1,40 @@
-//**** issuses ****
-//1: getting group members
 const Group = require('../../model/admin/group.model');
 const Member = require('../../model/admin/member.model');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const dashboardsession = require('../../controller/admin/dashboardheader');
+
 // *** add group page
 exports.addGroup = async (req, res) => {
-    res.render('admin/dashboard/group/add_group', {
-        pageTitle: "Add Group",
-        pageName: 'add_dept'
-    })
+    try{ 
+        const _id = req.session.user._id;
+        // get session info
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
+        res.render('admin/dashboard/group/add_group', {
+            pageTitle: "Add Group",
+            pageName: 'add_dept',
+            userSession: loggedinuser,
+            systemInfo: systemInfo
+        })
+    } catch (error) { 
+        res.json({error:"true" , success:"false",msg:error})
+    }
 };
 exports.groupList = async (req , res) => {
-   res.render('admin/dashboard/group/groups_list', {
-        pageTitle: "List Group",
-        pageName: 'list_group'
-    })
+    try{ 
+        const _id = req.session.user._id;
+        // get session info
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
+        res.render('admin/dashboard/group/groups_list', {
+            pageTitle: "List Group",
+            pageName: 'list_group',
+            userSession: loggedinuser,
+            systemInfo: systemInfo
+        })
+    } catch (error) { 
+        res.json({error:"true" , success:"false",msg:error})
+    }
 }
 //** save/update group
 exports.saveGroup = async (req, res) => {
@@ -28,23 +48,23 @@ exports.saveGroup = async (req, res) => {
        // update group
        if(group_id){
            if (group_details.meeting_days) { // add  meeting date
-                console.log(group_details.meeting_days)
                const saved = await Group.updateOne(
                  {_id:group_id},
                  {$push:{meeting_days:group_details.meeting_days}}
                 )
             };
            const {meeting_days,...newDetails} = group_details;
-           console.log(newDetails);
            const saved = await Group.updateOne({_id:group_id},newDetails);
-           if(saved) res.redirect(`/admin/group/group_details/${group_id}`);
+
+           if(saved){ 
+            req.flash("success" ,"Group Details Updated");
+             res.redirect(`/admin/group/group_details/${group_id}`);
+           }
        } else { 
-           console.log(group_details);
            const saved = await Group.create(group_details);
            if(saved) return res.json({info:{status: 'success', msg: 'Group added successfully'}});
        }
     } catch(error) { 
-        console.log(error);
         res.status(500).json({success:"false" , error:"ture" , msg:error});
     }
 }
@@ -60,6 +80,10 @@ exports.getGroups = async (req,res) => {
 // group details (members,leaders) 
 exports.getGroupDetails = async (req , res) => {  
     try{
+         const _id = req.session.user._id;
+        // get session info
+        const loggedinuser = await dashboardsession.signedInUser(_id);
+        const systemInfo = await dashboardsession.getSysInfo();
         const group_id = mongoose.Types.ObjectId(req.params.id);
         // get group members
         const group_member = await Member.find({groups:group_id});
@@ -72,7 +96,7 @@ exports.getGroupDetails = async (req , res) => {
                     localField:"group_leaders",
                     foreignField:"_id",
                     as:"leaders"
-                }},
+            }},
             {
                 $project:{
                     _id:1,
@@ -85,7 +109,8 @@ exports.getGroupDetails = async (req , res) => {
                     "leaders.firstname":1,
                     "leaders.middlename":1,
                     "leaders.lastname":1,
-            }}
+                }
+            }
         ]);
         let group_info;
         group_detail.forEach(element => {
@@ -95,7 +120,9 @@ exports.getGroupDetails = async (req , res) => {
             pageTitle: "Group Details",
             pageName: 'group_details',
             members:group_member, // group members
-            info:group_info  // group infomation
+            info:group_info , // group infomation
+            userSession: loggedinuser,
+            systemInfo: systemInfo,
         })
     } catch (error) { 
         res.status(500).json({success:"false" , error:"ture" , msg:error});
@@ -120,10 +147,8 @@ exports.removeGroupLeader = async (req, res) => {
             {_id:group_id},
             {$pull:{group_leaders:leader_id}}
         );
-        console.log(removed)
          if(removed) res.status(200).json({success:"true" , error:"false", msg:"Group leader removed"})
     } catch (error){ 
-        console.log(error);
         res.status(500).json({success:"false" , error:"ture" , msg:error});
     }
 }
@@ -169,12 +194,10 @@ exports.addGroupMember = async (req, res) => {
             {_id:{$in:new_member}},
             {$push:{groups:group}});
        if(updated){
-            // *** notification not showing
-            req.flash(`${updated.nModified} Members added to group`);
+            req.flash("success",`${updated.nModified} Members added`);
             res.redirect(`/admin/group/group_details/${group}`);
        }
     } catch(error){ 
-        console.log(error);
         res.json({error:"true" , success:"false", msg:error});
     }
 }
@@ -189,5 +212,36 @@ exports.search_qurey = async (req, res) => {
         }
     } catch (error) {
      res.status(500).json({success:"false",error:"ture",msg:error});
+    }
+}
+// delete group
+exports.deleteGroup = async (req , res ) => { 
+    try {
+        const id = req.params.id;
+        const deleted = await Group.deleteOne({_id:id});
+        if (deleted) {
+            const removed = await Member.updateMany(
+                {$pull:{groups:id}}
+            );
+            if(removed){ 
+                res.redirect("/admin/group/list")
+            }
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+// remove member from group
+exports.remove_group_member = async (req, res) => { 
+    try{
+        const member_id = req.body.id;
+        const group_id = req.body.group; 
+        const removed = await Member.update(
+            {_id:member_id},
+            {$pull:{groups:group_id}}
+        );
+        if(removed) res.status(200).json({success:"true" , error:"false", msg:"Group member Remove"})
+    } catch (error){ 
+        res.status(500).json({success:"false" , error:"ture" , msg:error});
     }
 }

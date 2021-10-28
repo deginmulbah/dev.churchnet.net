@@ -23,9 +23,9 @@
           <li class="nav-item">
             <a class="nav-link" id="profile-tab-02" data-toggle="tab" href="#profile-02" role="tab" aria-controls="profile" aria-selected="false">Edit</a>
           </li>
-          <li class="nav-item">
+        <!--   <li class="nav-item">
             <a class="nav-link" id="contact-tab-03" data-toggle="tab" href="#contact-02" role="tab" aria-controls="contact" aria-selected="false">Family</a>
-          </li>
+          </li> -->
           <li class="nav-item">
               <a class="nav-link" id="giving-tab-03" data-toggle="tab" href="#giving-02" role="tab" aria-controls="giving" aria-selected="false">Giving</a>
             </li>
@@ -37,239 +37,147 @@
                   <div class="col-md-4">
                       <div class="card">
                         <div class="card-body">
-                           <div class="personal-panel panel">
-                             <!-- profile pic -->
-                             <% if (member.avater) { -%>
-                             <div class="avatar avatar-xll">
-                                <img class="img-fluid" width="100px" height="200px" src="/uploads/<%= member.avater %>" alt="avater">
-                              </div>
-                             <% } else { -%>
-                              <div class="avatar avatar-xll bg-light text-dark mb-3">
-                                  <span class="avatar-name"><%= member.initial %></span>
-                              </div> 
-                              <% } -%>
-                              <!-- member basic info -->
-                               <div class="name">
-                                  <h4><%= member.firstname %> <%= member.middlename %> <%= member.lastname %></h4>
-                                  <sapn><%= member.gender %></sapn>
-                                  <p class="mt-0">
-                                    <% if (member.dates) { -%>
-                                      <%= moment().diff(moment(member.dates.dob, "DD-MM-YYYY"), 'year'); %> yrs (<%= moment(member.dates.dob).format("MMM DD YYYY") %>)
-                                    <% } -%>
-                                  </p>
-                                </div>
-                           </div>
-                           <hr />
-                           <!-- icon -->
-                           <div class="text-center icon">
-                             <i class="fa fa-tint"></i>
-                           </div>
-                        </div>
-                      </div>
-                      <!-- contact info -->
-                      <% if (member.contact) { %>
-                        <div class="card">
-                        <div class="card-body contact-panel">
-                          <div class="panel-heading">Contact Info</div>
-                            <% if (member.contact.primaryemail) { %>
-                              <div class="info-details">
-                                <div class="d-flex details">
-                                  <div class="info">
-                                    <p><i class="fa fa-envelope-open mr-2"></i>Email</p>
-                                  </div>
-                                  <div class="info">
-                                    <p><%= member.contact.primaryemail %></p>
-                                  </div>
-                                </div>
-                              </div>
-                              <% } %>
-                              <% if (member.contact.secondaryemail) { %>
-                              <div class="info-details">
-                                <div class="d-flex details">
-                                  <div class="info">
-                                    <p><i class="fa fa-envelope-open mr-2"></i>Secondary Email</p>
-                                  </div>
-                                  <div class="info">
-                                    <p><%= member.contact.secondaryemail %></p>
-                                  </div>
-                                </div>
-                              </div>
-                              <% } %>
-                              <% if (member.contact.primarynumber) { %>
-                                <div class="info-details">
-                                  <div class="d-flex details">
-                                    <div class="info">
-                                      <p><i class="fa fa-mobile-phone mr-2"></i>Phone <br/><span>(Home)</span></p>
-                                    </div>
-                                    <div class="info">
-                                      <p><%= member.contact.primarynumber %></p>
-                                    </div>
-                                  </div>
-                                </div>
-                              <% } %>
-                              <% if (member.contact.secondarynumber) { %>
-                                <div class="info-details">
-                                  <div class="d-flex details">
-                                    <div class="info">
-                                      <p><i class="fa fa-mobile-phone mr-2"></i>Phone <br/><span>(work)</span></p>
-                                    </div>
-                                    <div class="info">
-                                      <p><%= member.contact.secondarynumber %></p>
-                                    </div>
-                                  </div>
-                                </div>
-                              <% } %>
-                        </div>
-                      </div>
-                      <% } %>
-                      <!-- address info -->
-                      <% if (member.address) { %>
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="panel-heading">Address</div>
-                              <div class="details">
-                                <div class="info">
-                                  <p><i class="fa fa-home mr-2"></i><%= member.address.address %></p>
-                                </div>
-                              </div>
-                              <% if (member.address.city) { %>
-                              <div class="info-details">
-                                  <div class="d-flex details">
-                                    <div class="info">
-                                      <p class="text-capitalize"><i class="fa fa-building-o mr-2"></i>city:<br/></p>
-                                    </div>
-                                    <div class="info">
-                                      <p><%= member.address.city %></p>
-                                    </div>
-                                  </div>
-                              </div>
-                            <% } %>
-                            <% if (member.address.state) { %>
-                              <div class="info-details">
-                                  <div class="d-flex details">
-                                    <div class="info">
-                                      <p class="text-capitalize"><i class="fa fa-building mr-2"></i>State:<br/></p>
-                                    </div>
-                                    <div class="info">
-                                      <p><%= member.address.state %></p>
-                                    </div>
-                                  </div>
-                              </div>
-                            <% } %>
-                            <% if (member.address.country) { %>
-                              <div class="info-details">
-                                  <div class="d-flex details">
-                                    <div class="info">
-                                      <p class="text-capitalize"><i class="fa fa-flag mr-2"></i>country:<br/></p>
-                                    </div>
-                                    <div class="info">
-                                      <p><%= member.address.country %></p>
-                                    </div>
-                                  </div>
-                              </div>
-                            <% } %>
-                        </div>
-                      </div>
-                      <% } %>
-                      <!-- Date info -->
-                      <% if (member.dates) { %>
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="panel-heading">Dates</div>
-                          <% if (member.dates.dob) { %>
-                            <div class="info-details">
-                              <div class="d-flex details">
-                                 <div class="info">
-                                    <p><i class="fa fa-birthday-cake mr-2"></i>Birthdate</p>
-                                 </div>
-                                 <div class="info">
-                                    <p><%= moment(member.dates.dob).format("MMM DD YYYY") %><span class="ml-2">(<%= moment().diff(moment(member.dates.dob, "DD-MM-YYYY"), 'year'); %> yrs)</span></p>
-                                 </div>
-                              </div>
+                          <div class="d-flex flex-column align-items-center text-center">
+                            <% if (member.avater) { -%>
+                              <div class="avatar avatar-xll">
+                                 <img class="img-fluid rounded-circle" width="150" src="/uploads/avater/<%= member.avater %>" alt="avater">
+                               </div>
+                              <% } else { -%>
+                               <div class="rounded-circle bg-light text-dark p-lg-5">
+                                   <span class="inital-name"><%= member.initial %></span>
+                               </div> 
+                               <% } -%>
+                            <div class="mt-3">
+                              <h4><%= member.firstname %> <%= member.middlename %> <%= member.lastname %></h4>
+                              <p class="text-light mb-1 text-uppercase"><%= member.gender %></p>
+                              <p class="text-muted font-size-sm"><%= member.address.address %></p>
+                              <button class="btn btn-outline-primary">Message</button>
                             </div>
-                          <% } %>
-                          <% if (member.dates.date_bapts) { %>
-                            <div class="info-details">
-                              <div class="d-flex details">
-                                 <div class="info">
-                                    <p><i class="fa fa-tint mr-2"></i>Baptized On</p>
-                                 </div>
-                                 <div class="info">
-                                    <p><%= moment(member.dates.date_bapts).format("MMM DD YYYY") %></p>
-                                 </div>
-                              </div>
-                            </div>
-                          <% } %>
-                          <% if (member.dates.joined_date) { %>
-                            <div class="info-details">
-                              <div class="d-flex details">
-                                 <div class="info">
-                                    <p><i class="fa fa-calendar-check-o mr-2"></i>Join Date</p>
-                                 </div>
-                                 <div class="info">
-                                    <p><%= moment(member.dates.joined_date).format("MMM DD YYYY") %></p>
-                                 </div>
-                              </div>
-                            </div>
-                          <% } %>
-                        </div>
-                      </div>
-                    <% } %>
-                  </div>
-                  <div class="col-md-8">
-                  <% if (member.family.length) { %>
-                  <div class="card">
-                    <div class="card-body">
-                         <div class="panel-heading">Family</div>
-                           <div class="row">
-                            <% for (var i = 0; i < family.length; i++) { %>
-                              <div class="col-md-6">
-                                <div class="row">
-                                  <div class="col-4">
-                                    <div class="userprofile">Jm</div>
-                                  </div>
-                                  <div class="col-8">
-                                    <div class="mt-4">
-                                      <p style="padding-bottom:0px;">Primary
-                                        <br><span><a href="#"><%= family[i].firstname %> Mulbah</a></span>
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% } %>
-                           </div>
-                      </div>
-                    </div>
-                    <% } %>
-                    <% if (group.length) { -%>
-                      <div class="card">
-                        <div class="card-body">
-                           <div class="panel-heading">Groups</div>
-                           <ul class="list-group">
-                             <% for (var i = 0; i < group.length; i++) { -%>
-                                 <li class="d-flex justify-content-between align-items-center">
-                                  <h5>
-                                    <a href="/admin/group/group_details/<%= group[i].group_info._id %>">
-                                     <%= group[i].group_info.group_name %>
-                                   </a>
-                                  </h5>
-                                    <!-- <span class="badge badge-primary badge-pill">14</span> -->
-                                </li>
-                             <% } -%>
-                           </ul>  
-                        </div>
-                      </div>
-                    <% } -%>
-                      <div class="card">
-                          <div class="card-body">
-                           <div class="panel-heading">Documents</div>
-                            
                           </div>
                         </div>
+                      </div>
+                      <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa fa-birthday-cake mr-2 icon-inline text-primary"></i> Date of Birth</h6>
+                            <span class="text-light"><%= moment(member.dates.dob).format('l')%></span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa fa-building-o mr-2 icon-inline text-primary"></i>Join</h6>
+                            <span class="text-light"><%= moment(member.dates.joined_date).format('l')%></span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa fa-tint"></i> Baptized On</h6>
+                            <span class="text-light"><%= moment(member.dates.joined_date).format('l')%></span>
+                          </li>
+                        </ul>
+                      </div>
                   </div>
+                  <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-light"><%= member.contact.primaryemail %></div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">Mobile</h6>
+                            </div>
+                            <div class="col-sm-9 text-light"><%= member.contact.primarynumber %></div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">Phone (Home)</h6>
+                            </div>
+                            <div class="col-sm-9 text-light"><%= member.contact.secondarynumber %></div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">Home Address</h6>
+                            </div>
+                            <div class="col-sm-9 text-light"><%= member.address.address %></div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">City</h6>
+                            </div>
+                            <div class="col-sm-9 text-light"><%= member.address.city %></div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">County</h6>
+                            </div>
+                            <div class="col-sm-9 text-light"><%= member.address.state %></div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row gutters-sm">
+                      <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h6 class="d-flex align-items-center mb-3">Groups</h6>
+                            <hr>
+                            <ul class="list-group">
+                              <% if (group.length) {%>
+                                <% for (var i = 0; i < group.length; i++) { -%>
+                                  <li class="d-flex justify-content-between align-items-center">
+                                   <h5>
+                                     <a href="/admin/group/group_details/<%= group[i].group_info._id %>">
+                                      <%= group[i].group_info.group_name %>
+                                    </a>
+                                   </h5>
+                                 </li>
+                              <% } -%>
+                              <%} else {%>
+                                <div class="text-center bg-light py-lg-5">
+                                    <i class="fa fa-list-ul"></i>
+                                    <a href="">Not Added To Any Group</a>
+                                </div>
+                              <% } %>
+                            </ul> 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                            <small>Web Design</small>
+                            <div class="progress mb-3" style="height: 5px">
+                              <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small>Website Markup</small>
+                            <div class="progress mb-3" style="height: 5px">
+                              <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small>One Page</small>
+                            <div class="progress mb-3" style="height: 5px">
+                              <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small>Mobile Template</small>
+                            <div class="progress mb-3" style="height: 5px">
+                              <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small>Backend API</small>
+                            <div class="progress mb-3" style="height: 5px">
+                              <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
               </div>
           </div>
+        </div>
         <!-- profile //-->
         <!-- edit profile -->
           <div class="tab-pane fade mb-5" id="profile-02" role="tabpanel" aria-labelledby="profile-tab-02">
@@ -373,7 +281,7 @@
                                           <label for="databaptized">Join Date<span class="text-danger ml-1" style="font-size:10px; font-style:italic;">require</span></label>
                                           <div class="icon-input">
                                               <i class="fa fa-calendar"></i>
-                                              <input type="text" class="form-control date-picker" name="joindate" id="joindate" value="<%= member.dates.joined_date %>">
+                                              <input type="text" class="form-control date-picker" name="joindate" id="joindate" value="<%= moment(member.dates.joined_date).format("l") %>">
                                               <span class="error"> </span>
                                           </div>
                                       </div>
@@ -502,7 +410,7 @@
           </div>
         <!-- edit profile //-->
         <!-- family  -->
-          <div class="tab-pane fade" id="contact-02" role="tabpanel" aria-labelledby="contact-tab-02">
+<!--           <div class="tab-pane fade" id="contact-02" role="tabpanel" aria-labelledby="contact-tab-02">
             <div class="card">
               <div class="card-body">
                 <p class="">
@@ -512,7 +420,7 @@
                 <form action="/admin/member/add_family" method="POST">
                   <div class="row">
                     <!-- member id -->
-                    <input type="hidden" name="member_id" value="<%= member._id %>">
+                    <!-- <input type="hidden" name="member_id" value="<%= member._id %>">
                     <div class="col-md-6 form_sec_outer_task">
                       <div class="row">
                         <div class="col-md-6">
@@ -550,8 +458,8 @@
                 </div>
               </form>
               </div>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div>  -->
         <!-- family  //-->
         <!-- giving  -->
         <div class="tab-pane fade" id="giving-02" role="tabpanel" aria-labelledby="giving-tab-02">

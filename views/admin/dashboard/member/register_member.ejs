@@ -71,11 +71,12 @@
                                             <div class="preview-zone d-none">
                                                 <div class="box box-solid">
                                                     <div class="box-tools">
-                                                        <p id="remove-preview">
+                                                        <p data-tips="tooltip" data-placement="top" title="Remove Image" id="remove-preview">
                                                           <i class="fa fa-times"></i>
                                                         </p>
                                                     </div>
                                                   <div class="box-body"></div>
+                                                  
                                                 </div>
                                               </div>
                                             <div>
@@ -167,52 +168,41 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="address">Address<span class="text-danger ml-1" style="font-size:10px; font-style:italic;">require</span></label>
-                                            <input type="text" class="form-control" name="address" id="address" cols="10" rows="2"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="city">City<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
-                                            <input type="text" class="form-control" id="city" name="city" />
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="state">State<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
-                                                <input type="text" class="form-control" id="state" name="state"/>
+                                        <!-- <div class="row"> -->
+                                            <div class="form-group">
+                                                <label for="address">Address<span class="text-danger ml-1" style="font-size:10px; font-style:italic;">require</span></label>
+                                                <input type="text" class="form-control" name="address" id="address"/>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="country">Country<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
-                                                <input type="text" class="form-control" id="country" name="country"/>
+                                            <div class="form-group">
+                                                <label for="city">City<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
+                                                <input type="text" class="form-control" id="city" name="city" />
                                             </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="state">State<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
+                                                    <input type="text" class="form-control" id="state" name="state"/>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="country">Country<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
+                                                    <input type="text" class="form-control" id="country" name="country"/>
+                                                </div>
+                                            </div>
+                                        <!-- </div> -->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title add-title"><i class="la la-sitemap mr-3"></i>Groups</h5>
-                                <div class="form-row">
-                                    <div class="form-group col-md-7">
-                                        <label for="group">Groups<span class="text-light ml-1" style="font-size:10px; font-style:italic;">optional</span></label>
-                                        <select class="group" name="group" id="group" multiple="multiple">
-                                            <option></option>
-                                        </select>
-                                    </div>
-                                </div>
-                         </div>
-                     </div>
                     <div class="sticky-panel">
-                        <button id="member_form_btn" type="submit" class="btn btn-primary mr-3">Save</button>
-                        </div>
+                        <button id="member_form_btn" type="submit" class="btn btn-primary mr-3 pull-right">Save</button>
+                    </div>
                 </form>
                 </div>
             </div>
         </div>
         <!-- visitor -->
         <div class="tab-pane fade" id="profile-02" role="tabpanel" aria-labelledby="profile-tab-02">
-            <div class="card">
+            <div class="card mb-lg-5">
                 <div class="card-body">
                     <div class="mb-4">
                         <h5 class="card-title add-title"><i class="la la-user mr-3"></i>Visitor</h5>
@@ -269,7 +259,7 @@
                 </div>
             </div>
             <div class="sticky-panel">
-                <button type="submit" class="btn btn-primary mr-3" id="save_visitor">Save</button>
+                <button type="submit" class="btn btn-primary mr-3 pull-right" id="save_visitor">Save</button>
             </div>
         </form>
          </div>

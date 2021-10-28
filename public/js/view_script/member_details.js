@@ -16,6 +16,7 @@ $(document).ready(function () {
             dom:'lrtip',
             info: false,
             lengthChange: false,
+            autoWidth:false,
             language: {
                 emptyTable: `<div>
 						<img class="img-fluid" src="/images/file/no-results.svg" alt="data-not-found" width="100px"/>
@@ -43,25 +44,34 @@ $(document).ready(function () {
             },
             columns: [
             {
+                class:"name",
                 data: "firstname",
                 render:function(data, type, row){
-                const fullname = `${data} ${row['middlename']} ${row["lastname"]}`;
-                return `<a class="d-flex align-items-center" href="/admin/member/member_profile/${row['_id']}">
-                 <div class="avatar avatar-sm bg-primary mr-1 initial-sm">
-                    <span class="avatar-name">${row['initial']}</span>
-                 </div>
-                     <span>${fullname}</span>
-                </a>`
-             }
+                    const fullname = `${data} ${row['middlename']} ${row["lastname"]}`;
+                    return `<a class="d-flex align-items-center" href="/admin/member/member_profile/${row['_id']}">
+                            <div class="avatar avatar-sm bg-primary mr-3 user-initial-sm">
+                                <span class="avatar-name">${row['initial']}</span>
+                            </div>
+                            <span>${fullname}</span>
+                    </a>`
+                }
             },
             { data: "gender" },
-            { data: "contact.primaryemail" },
+            { 
+                data: "contact.primaryemail",
+                render: function (data, type , row) { 
+                    return (data) ? data : "N/A"
+                }
+            },
             { 
                 data: "contact.primarynumber",
-                render: function(data,type,row) {
-                    return `${data} <a href="javascript:void(0)" id="edit-giving" class="action-icon edit pull-right" data-row-id="${row._id}"><i class="la la-envelope-o"></i></a>
-                    <a href="javascript:void(0)" id="delete-giving" class="action-icon giving pull-right" data-row-id="${row._id}"><i class="la la-money"></i></a>`
             },
+            { 
+                data: "_id",
+                render: function(data,type,row) {
+                    return `<a href="javascript:void(0)" id="edit-giving" class="action-icon edit pull-right" data-row-id="${data}"><i class="la la-envelope-o"></i></a>
+                    <a href="javascript:void(0)" id="delete-giving" class="action-icon giving pull-right" data-row-id="${data}"><i class="la la-money"></i></a>`
+                }
             },
         ],
         });

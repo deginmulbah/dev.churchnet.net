@@ -4,7 +4,7 @@ const userController = require('../../controller/admin/user.controller')
 const is_auth = require('../../middleware/is_auth');
 const { body, check } = require('express-validator');
 const User = require('../../model/admin/adminUser.model');
-const account_control = require('../../middleware/account_control')
+// const account_control = require('../../middleware/account_control')
 const { validation } = require('../../middleware/validation')
 
 router.get("/", is_auth, userController.create_user_account)
@@ -37,9 +37,11 @@ router.post("/add_user",
 router.get("/view_users", is_auth, userController.all_user);
 router.get("/get_users", is_auth, userController.get_get_users);
 router.get("/view_user_profile/:id", is_auth, userController.view_user_profile);
-router.get("/suspend_account/:id", is_auth, account_control.account_status("suspended"));
-router.get("/activate_account/:id", is_auth, account_control.account_status("active"));
-router.get("/deactivate_account/:id", is_auth, account_control.account_status("inactive"));
+
+// router.get("/suspend_account/:id", is_auth, account_control.account_status("suspended"));
+// router.get("/activate_account/:id", is_auth, account_control.account_status("active"));
+// router.get("/deactivate_account/:id", is_auth, account_control.account_status("inactive"));
+
 router.get("/delete_user_account/:id", is_auth, userController.delete_user_account);
 router.get("/edit_user_account/:id", is_auth, userController.edit_user_account);
 
